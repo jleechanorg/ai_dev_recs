@@ -6,6 +6,25 @@
 
 ---
 
+## 📑 Table of Contents
+
+- [What This Is](#-what-this-is)
+- [Executive Summary](#-executive-summary)
+  - [Core Tools](#core-tools-daily-use)
+  - [AI Assistants](#ai-assistants)
+  - [MCP Servers](#mcp-servers)
+  - [Automation Commands](#automation-commands)
+  - [Development Tools](#development-tools)
+- [Quick Stats](#-quick-stats)
+- [Complete Stack](#-the-complete-stack)
+- [Unique Innovations](#-unique-innovations)
+- [Documentation](#-documentation)
+- [Getting Started](#-getting-started)
+- [Cost Breakdown](#-cost-breakdown)
+- [Who This Is For](#-who-this-is-for)
+
+---
+
 ## 🎯 What This Is
 
 This is **NOT** a "top 10 AI tools" listicle. This is a **battle-tested toolchain** extracted from actual production usage, backed by git commit evidence and real workflow patterns.
@@ -16,13 +35,432 @@ This is **NOT** a "top 10 AI tools" listicle. This is a **battle-tested toolchai
 - ✅ Slash command invocation patterns (7,950+ /copilot refs)
 - ✅ Active directory analysis (29,470 file touches)
 - ✅ Binary access timestamps
+- ✅ Last week analysis (1,285 mcp-cli uses, 6,377 git mentions)
 
 **What makes this different:**
 - **Proven at scale** - Production system serving real users
-- **Multi-agent orchestration** - 4 AI agents (copilot, cursor, codex, claude) creating branches autonomously
-- **High automation** - 80+ custom slash commands, 40+ skill files
-- **Quality-first** - Pre/post-commit hooks, evidence-based testing
-- **Cost-conscious** - ~$40-60/mo AI services for advanced capabilities
+- **Multi-agent orchestration** - 4 AI agents working autonomously
+- **High automation** - 80+ custom commands, automatic quality gates
+- **Quality-first** - 17.4% of all commits are tests
+- **Cost-conscious** - ~$40-60/mo for advanced capabilities
+
+---
+
+## 📋 Executive Summary
+
+### Core Tools (Daily Use)
+
+#### 1. Claude Code CLI
+**What it is:** Anthropic's official command-line AI assistant with 200K context window
+
+**Why valuable:**
+- Terminal-first workflow (scriptable, automatable)
+- Extensible via MCP servers (10 active integrations)
+- Custom commands (80+ slash commands for specific workflows)
+- Multi-agent coordination support
+
+**How to install:**
+```bash
+npm install -g @anthropic-ai/claude-code
+export ANTHROPIC_API_KEY="sk-ant-..."
+claude --setup
+```
+
+**Evidence:** 6,110 file touches in `.claude/commands/` directory
+
+**Detailed docs:** [TOOLCHAIN.md](TOOLCHAIN.md#claude-code-cli), [SETUP_GUIDE.md](SETUP_GUIDE.md#claude-code-cli)
+
+---
+
+#### 2. pytest
+**What it is:** Python testing framework for unit, integration, and E2E tests
+
+**Why valuable:**
+- 17.4% of all commits are tests (3,308 testing commits)
+- Evidence-based testing protocol with structured artifacts
+- Integration with `/testllm` for AI-driven test execution
+
+**How to install:**
+```bash
+pip install pytest pytest-cov
+pytest tests/
+```
+
+**Evidence:** 3,308 commits, 1,804 mentions in last week
+
+**Detailed docs:** [WORKFLOWS.md](WORKFLOWS.md#-redgreen---test-driven-development)
+
+---
+
+#### 3. gh CLI (GitHub CLI)
+**What it is:** Official GitHub command-line tool for PR/issue management
+
+**Why valuable:**
+- Core to `/copilot` PR automation (7,950 invocations)
+- PR creation, review, and merge from terminal
+- Integrated with automation workflows
+
+**How to install:**
+```bash
+# macOS
+brew install gh
+gh auth login
+
+# Linux
+curl -sL https://github.com/cli/cli/releases/download/v2.40.1/gh_2.40.1_linux_amd64.tar.gz | tar -xz -C /tmp
+mkdir -p ~/.local/bin && cp /tmp/gh_2.40.1_linux_amd64/bin/gh ~/.local/bin/
+```
+
+**Evidence:** Accessed daily, 6,377 git mentions in last week
+
+**Detailed docs:** [SETUP_GUIDE.md](SETUP_GUIDE.md#gh-cli-github)
+
+---
+
+#### 4. Gemini (Google)
+**What it is:** Primary LLM backend via MCP integration
+
+**Why valuable:**
+- 1,440 MCP hits + 1,114 commit mentions (highest usage)
+- Structured output with JSON mode
+- Code execution capabilities
+- Fallback chains for reliability
+
+**How to install:**
+```bash
+# Via MCP server (gemini-cli-mcp)
+# See MCP Servers section below
+```
+
+**Evidence:** #1 most-used MCP server
+
+**Detailed docs:** [TOOLCHAIN.md](TOOLCHAIN.md#gemini-google), [WORKFLOWS.md](WORKFLOWS.md#-mcp-heavy-usage-pattern)
+
+---
+
+#### 5. beads (bd)
+**What it is:** MCP-integrated task tracking system
+
+**Why valuable:**
+- AI can read/write tasks in real-time
+- Used MORE than traditional issue trackers (259 commits)
+- Binary accessed daily (last access: yesterday)
+
+**How to install:**
+```bash
+# Already installed in the reference setup
+bd list
+bd create "Task description"
+```
+
+**Evidence:** 539 MCP hits, binary accessed Feb 11, 2026
+
+**Detailed docs:** [TOOLCHAIN.md](TOOLCHAIN.md#beads-bd), [WORKFLOWS.md](WORKFLOWS.md#-mcp-heavy-usage-pattern)
+
+---
+
+#### 6. tmux
+**What it is:** Terminal multiplexer for session management
+
+**Why valuable:**
+- Multi-agent orchestration (4 agents in parallel)
+- Detachable sessions for long-running tasks
+- Essential for `/orch` workflows
+
+**How to install:**
+```bash
+brew install tmux
+tmux new -s mysession
+```
+
+**Evidence:** 287 orchestration commits
+
+**Detailed docs:** [WORKFLOWS.md](WORKFLOWS.md#-multi-agent-orchestration)
+
+---
+
+### AI Assistants
+
+#### 7. Cursor
+**What it is:** VS Code fork with native AI pair programming
+
+**Why valuable:**
+- Best-in-class autocomplete (multi-line, contextual)
+- Chat with codebase using @ symbols
+- Cmd+K for inline edits
+- Active agent branches (`cursor/*`)
+
+**How to install:**
+```bash
+# Download from https://cursor.sh/
+# Install and sign in
+```
+
+**Evidence:** Active `cursor/*` branches, binary accessed Feb 7
+
+**Cost:** $20/mo (Pro)
+
+**Detailed docs:** [SETUP_GUIDE.md](SETUP_GUIDE.md#cursor)
+
+---
+
+#### 8. Warp Terminal
+**What it is:** Modern terminal with AI features and better UX
+
+**Why valuable:**
+- AI command suggestions
+- Command palette with search
+- Block-based output
+- Primary terminal for daily work
+
+**How to install:**
+```bash
+# Download from https://www.warp.dev/
+```
+
+**Evidence:** Daily driver (no git traces as it's just a terminal)
+
+**Cost:** Free
+
+**Detailed docs:** [SETUP_GUIDE.md](SETUP_GUIDE.md#warp-terminal)
+
+---
+
+#### 9. Antigravity & Codex
+**What they are:** Alternative AI IDEs for specialized tasks
+
+**Why valuable:**
+- Antigravity: Experimental features
+- Codex: Precision and verification (268 mentions/week)
+- Active agent branches (`codex/*`)
+
+**How to install:**
+```bash
+# Download from official sites
+```
+
+**Evidence:** Codex has active agent branches, 268 mentions in last week
+
+**Detailed docs:** [TOOLCHAIN.md](TOOLCHAIN.md#antigravity--codex)
+
+---
+
+### MCP Servers
+
+#### 10. MCP Ecosystem (10 Active Servers)
+**What it is:** Model Context Protocol servers for multi-AI coordination
+
+**Why valuable:**
+- 1,285 mcp-cli uses in last week alone!
+- Multi-model coordination (Gemini + Grok + Perplexity + Claude)
+- Browser automation (chrome-superpower, claude-in-chrome)
+- Research acceleration (context7 for docs, perplexity for search)
+
+**How to install:**
+```bash
+npm install -g @modelcontextprotocol/cli
+mcp-cli servers  # Verify active servers
+```
+
+**Active servers:**
+1. **gemini-cli-mcp** (1,440 hits) - Gemini API
+2. **grok** (670 hits) - X.ai real-time intelligence
+3. **perplexity-ask** (661 hits) - Research/search
+4. **sequential-thinking** (649 hits) - Enhanced reasoning
+5. **beads** (539 hits) - Task tracking
+6. **chrome-superpower** (407 hits) - Browser automation
+7. **context7** (341 hits) - Library docs
+8. **claude-in-chrome** - Chrome extension
+9. **mcp_mail** (28 hits) - Agent messaging
+10. **plugin_superpowers-chrome** - Obra Superpowers
+
+**Evidence:** 5,075 total MCP diff hits over 6 months, 1,285 uses in last week
+
+**Detailed docs:** [WORKFLOWS.md](WORKFLOWS.md#-mcp-heavy-usage-pattern), [SETUP_GUIDE.md](SETUP_GUIDE.md#mcp-servers-10-active)
+
+---
+
+### Automation Commands
+
+#### 11. /copilot
+**What it is:** Autonomous PR processing command
+
+**Why valuable:**
+- Handles 100+ comment PRs automatically
+- 4-phase workflow (Critical scan → Categorize → Implement → Verify)
+- Priority-based triage (CRITICAL → BLOCKING → IMPORTANT → ROUTINE)
+
+**How to use:**
+```bash
+/copilot  # Processes all open PR comments
+```
+
+**Evidence:** 7,950 diff references, 343 uses in last week
+
+**Detailed docs:** [WORKFLOWS.md](WORKFLOWS.md#-copilot---autonomous-pr-processing)
+
+---
+
+#### 12. /fixpr
+**What it is:** Intelligent PR fix automation
+
+**Why valuable:**
+- Analyzes failures, identifies root cause
+- Minimal code changes (no gold-plating)
+- Integrated verification
+
+**How to use:**
+```bash
+/fixpr        # Fix current PR
+/fixpr 123    # Fix specific PR number
+```
+
+**Evidence:** 5,124 diff references, 760 uses in last week
+
+**Detailed docs:** [WORKFLOWS.md](WORKFLOWS.md#-fixpr---intelligent-pr-fixing)
+
+---
+
+#### 13. /redgreen (TDD)
+**What it is:** Test-driven development workflow
+
+**Why valuable:**
+- Red-green pattern (failing test → minimal code → pass → refactor)
+- Evidence-based testing with structured artifacts
+- 17.4% of commits are tests
+
+**How to use:**
+```bash
+/redgreen  # or /tdd
+```
+
+**Evidence:** 3,817 combined references, 277 uses in last week
+
+**Detailed docs:** [WORKFLOWS.md](WORKFLOWS.md#-redgreen---test-driven-development)
+
+---
+
+#### 14. /fake (Automatic Hook)
+**What it is:** Automatic code quality gate that runs after EVERY Write operation
+
+**Why valuable:**
+- **Proven track record:** Catches 15% of code with issues (speculative logic, fake selectors, placeholder code)
+- **Real catches:** Found 9+ violations in `automate_codex_update` branch (fake UI selectors, placeholder URLs)
+- **Zero effort:** 343 automatic checks in 30 days, no manual invocation
+- **Low cost:** ~$5-10/month in API calls, prevents hours of debugging
+
+**How to setup:**
+```bash
+# Environment variable
+export SMART_FAKE_TIMEOUT=180  # 3 minutes
+
+# Hook runs automatically via PostToolUse
+# See WORKFLOWS.md for full setup
+```
+
+**Evidence:** 343 automatic invocations (30 days), 85% pass rate, 15% catch rate with actionable findings
+
+**Detailed docs:**
+- [FAKE_HOOK_ANALYSIS.md](FAKE_HOOK_ANALYSIS.md) - **Proof of value with real examples**
+- [WORKFLOWS.md](WORKFLOWS.md#automatic-fake-code-quality-hook) - Setup instructions
+
+---
+
+#### 15. Other Commands
+**Active commands with evidence:**
+- `/execute` (6,332 refs) - General task execution
+- `/cerebras` (4,901 refs) - Fast code generation
+- `/commentreply` (4,007 refs) - Comment automation
+- `/research` (2,213 refs) - Research patterns
+- `/think` (1,743 refs) - Reasoning
+- `/pr` (1,821 refs) - PR creation
+- `/orch` (1,397 refs) - Multi-agent orchestration
+
+**Detailed docs:** [TOOLCHAIN.md](TOOLCHAIN.md#most-used-slash-commands-18)
+
+---
+
+### Development Tools
+
+#### 16. Docker + Docker Compose
+**What it is:** Containerization platform
+
+**Why valuable:**
+- Consistent dev/prod environments
+- Cloud Run deployment
+- 475 mentions in last week (actual usage confirmed)
+
+**How to install:**
+```bash
+# Download from https://www.docker.com/get-docker
+docker --version
+docker compose version
+```
+
+**Evidence:** 475 mentions in last week (despite only 17 commits)
+
+**Detailed docs:** [SETUP_GUIDE.md](SETUP_GUIDE.md#docker--docker-compose)
+
+---
+
+#### 17. Playwright
+**What it is:** Modern browser automation framework
+
+**Why valuable:**
+- E2E testing for frontend
+- Auto-wait, multi-browser support
+- Better than Selenium
+
+**How to install:**
+```bash
+npm install -g playwright
+npx playwright install
+npx playwright test
+```
+
+**Evidence:** 69 commits, 405 mentions in last week
+
+**Detailed docs:** [WORKFLOWS.md](WORKFLOWS.md#-browser-testing)
+
+---
+
+#### 18. httpie
+**What it is:** Modern HTTP client (better than curl)
+
+**Why valuable:**
+- API testing
+- Human-friendly output
+- Simpler syntax
+
+**How to install:**
+```bash
+brew install httpie
+http GET api.example.com/users
+```
+
+**Evidence:** Present in workflow
+
+**Detailed docs:** [SETUP_GUIDE.md](SETUP_GUIDE.md#httpie)
+
+---
+
+#### 19. Google Cloud Platform
+**What it is:** Cloud services (Cloud Run, Firebase, Firestore)
+
+**Why valuable:**
+- Serverless deployment (Cloud Run - 192 deploy commits)
+- Firebase backend (136 commits)
+- Production infrastructure
+
+**How to install:**
+```bash
+brew install google-cloud-sdk
+gcloud auth login
+```
+
+**Evidence:** 192 deploy commits
+
+**Detailed docs:** [SETUP_GUIDE.md](SETUP_GUIDE.md#google-cloud-sdk)
 
 ---
 
@@ -31,238 +469,174 @@ This is **NOT** a "top 10 AI tools" listicle. This is a **battle-tested toolchai
 | Metric | Value |
 |--------|-------|
 | **Git commits analyzed** | 19,044 (last 6 months) |
-| **Custom slash commands** | 80+ commands, 18 heavily used |
-| **MCP servers active** | 9 of 17 installed |
+| **Custom slash commands** | 80+ total, 18 heavily used |
+| **MCP servers active** | 10 of 17 installed |
 | **AI assistants** | 5 (Claude Code, Cursor, Antigravity, Codex, Warp) |
 | **Testing commits** | 3,308 (17.4% of all work) |
-| **PR automation refs** | 7,950 /copilot invocations |
+| **PR automation** | 7,950 /copilot invocations |
 | **Multi-agent branches** | 4 agent prefixes (copilot/, cursor/, codex/, claude/) |
+| **mcp-cli usage** | 1,285 uses in last week |
+| **Docker mentions** | 475 in last week |
+| **/fake quality gate** | 343 automatic checks (30 days), 15% catch rate |
 | **Monthly AI cost** | ~$40-60 |
 
 ---
 
-## 🚀 The Stack
+## 🚀 The Complete Stack
 
-### Core Tools (Used Daily)
+See [TOOLCHAIN.md](TOOLCHAIN.md) for complete tool inventory with evidence scores.
 
-| Tool | Evidence | Purpose |
-|------|----------|---------|
-| **Claude Code CLI** | 6,110 file touches | Primary AI assistant, 80+ custom commands |
-| **pytest** | 3,308 commits (17.4%) | Testing framework |
-| **gh CLI** | Accessed daily | GitHub automation |
-| **Gemini** | 1,114 commits + 1,440 MCP hits | Primary LLM backend |
-| **beads (bd)** | 259 commits, daily access | MCP-based task tracking |
-| **tmux** | 287 commits | Multi-agent orchestration |
+**Tier 1 (Daily):** Claude Code, pytest, gh CLI, Gemini, beads, tmux
 
-### AI Assistants (5 Active)
-- **Claude Code CLI** - Terminal-first AI (Sonnet 4.5, 200K context)
-- **Cursor** - AI pair programming IDE
-- **Antigravity** - Experimental AI IDE
-- **Codex** - Alternative AI assistant
-- **Warp Terminal** - AI-enhanced terminal
+**Tier 2 (Heavy):** /copilot, /fixpr, /cerebras, Cursor, MCP servers, comment automation
 
-### MCP Servers (9 Active)
-1. **gemini-cli-mcp** (1,440 hits) - Gemini API integration
-2. **grok** (670 hits) - X.ai real-time intelligence
-3. **perplexity-ask** (661 hits) - Research and search
-4. **sequential-thinking** (649 hits) - Enhanced reasoning
-5. **beads** (539 hits) - Task management
-6. **chrome-superpower** (407 hits) - Browser automation
-7. **context7** (341 hits) - Library documentation
-8. **claude-in-chrome** - Chrome extension control
-9. **mcp_mail** (28 hits) - Agent-to-agent messaging
-
-### Most-Used Slash Commands (18)
-1. **`/copilot`** (7,950 refs) - Autonomous PR processing
-2. **`/execute`** (6,332 refs) - General task execution
-3. **`/fixpr`** (5,124 refs) - PR fix automation
-4. **`/cerebras`** (4,901 refs) - Fast code generation
-5. **`/commentreply`** (4,007 refs) - Comment automation
-6. **`/commentfetch`** (2,440 refs) - Fetch PR comments
-7. **`/redgreen`** (2,262 refs) - TDD workflow
-8. **`/research`** (2,213 refs) - Research patterns
-9. **`/testllm`** (2,172 refs) - LLM testing
-10. **`/think`** (1,743 refs) - Reasoning tool
-11. **`/pr`** (1,821 refs) - PR creation
-12. **`/plan`** (1,753 refs) - Planning
-13. **`/orch`** (1,397 refs) - Orchestration
-14. **`/commentcheck`** (1,269 refs) - Comment validation
-15. **`/secondo`** (106 commits) - Multi-model validation
-16. **`/generatetest`** (82 commits) - Test generation
-17. **`/adde2e`** (18 commits) - E2E test creation
-18. **`/sync`** (26 commits) - Branch sync
-
-### Development Tools
-- **Docker + Docker Compose** - Containerization
-- **Playwright** - Browser testing (69 commits)
-- **Chrome DevTools Protocol** - Via MCP
-- **httpie** - API testing
-
-### Cloud & Deployment
-- **Google Cloud Platform** - gcloud CLI
-- **Firebase** (136 commits) - Backend services
-- **Cloud Run** (192 commits) - Serverless deployment
+**Tier 3 (Regular):** Docker, Playwright, cloud services, /secondo, test generation
 
 ---
 
 ## 💡 Unique Innovations
 
-### 1. Multi-Agent Orchestration
-**Evidence:** 4 agent branch prefixes (copilot/, cursor/, codex/, claude/)
-- tmux-based coordination
-- MCP Mail for agent messaging
-- Autonomous convergence workflows
-- Real production usage (not aspirational)
+### 1. 12-Step Multi-AI Workflow
+Complete development lifecycle leveraging web + local AI tools.
 
-### 2. `/copilot` - Autonomous PR Processing
-**Evidence:** 7,950 references, 68 file commits
-- 4-phase workflow: Critical scan → Categorization → Implementation → Verification
-- Priority-based triage: CRITICAL → BLOCKING → IMPORTANT → ROUTINE
-- Hybrid execution: direct + agent delegation
-- Handles 100+ comment PRs autonomously
+**Source:** [LinkedIn Post](https://www.linkedin.com/posts/jeffrey-lee-chan_claude-web-start-and-codex-web-finish-as-activity-7400261997755478016-HLYP/)
 
-### 3. Evidence-Based Testing
-**Pattern:** `/tmp/worldarchitect.ai/<branch>/<test>/iteration_XXX/`
-- Full absolute paths (never abbreviated)
-- Structured bundles: README, evidence.md, logs, screenshots
-- Mandatory review before success reporting
-- 3,308 testing commits (17.4% of all work)
+**Key insight:** "Focus on AI review/quality as much as generation"
 
-### 4. beads Task Tracking
-**Evidence:** 259 commits, binary accessed daily
-- MCP-integrated task system
-- Used MORE than traditional issue trackers
-- Real-time AI interaction with tasks
+**Details:** [WORKFLOWS.md](WORKFLOWS.md#-the-12-step-multi-ai-development-workflow)
 
-### 5. Cost-Conscious Architecture
-- $40-60/mo total AI services
-- Heavy automation reduces manual work
-- Local classification (<50ms) vs API calls (>1500ms)
-- Multi-agent parallelization
+---
+
+### 2. Multi-Agent Orchestration
+4 AI agents (copilot, cursor, codex, claude) working autonomously in parallel.
+
+**Evidence:** 4 agent branch prefixes, 287 orchestration commits
+
+**Details:** [WORKFLOWS.md](WORKFLOWS.md#-multi-agent-orchestration)
+
+---
+
+### 3. Automatic Quality Gates
+`/fake` runs after EVERY file write (343 times last week).
+
+**Details:** [WORKFLOWS.md](WORKFLOWS.md#automatic-fake-code-quality-hook)
+
+---
+
+### 4. MCP-First Architecture
+10 servers, 1,285 uses in last week, multi-model coordination.
+
+**Details:** [WORKFLOWS.md](WORKFLOWS.md#-mcp-heavy-usage-pattern)
+
+---
+
+### 5. Evidence-Based Testing
+Full paths, structured bundles, 17.4% of commits are tests.
+
+**Details:** [WORKFLOWS.md](WORKFLOWS.md#-redgreen---test-driven-development)
 
 ---
 
 ## 📚 Documentation
 
-### Guides
-- **[TOOLCHAIN.md](TOOLCHAIN.md)** - Complete tool inventory with evidence
-- **[SETUP_GUIDE.md](SETUP_GUIDE.md)** - Installation instructions for each tool
+- **[TOOLCHAIN.md](TOOLCHAIN.md)** - Complete tool inventory with git evidence (60+ tools)
+- **[SETUP_GUIDE.md](SETUP_GUIDE.md)** - Installation instructions and environment variables
 - **[WORKFLOWS.md](WORKFLOWS.md)** - Unique workflows and automation patterns
-
-### Evidence
-- **Git analysis:** 19,044 commits (6 months)
-- **MCP usage:** 5,075 diff occurrences
-- **Active development:** 29,470 file touches in `mvp_site/tests`
+- **[LICENSE](LICENSE)** - MIT License
 
 ---
 
-## 🎓 Who This Is For
+## 🚀 Getting Started
 
-**You should use this if:**
-- ✅ Building production systems with AI assistance
-- ✅ Want terminal-first workflows
-- ✅ Need multi-agent orchestration
-- ✅ Value automation over manual work
-- ✅ Cost-conscious but want advanced capabilities
-- ✅ Want evidence-based recommendations (not hype)
-
-**This is NOT for you if:**
-- ❌ You prefer GUI-only tools
-- ❌ You want simple autocomplete-only AI
-- ❌ You're unwilling to customize/configure
-- ❌ You don't write tests
-- ❌ You want "works out of the box" with zero setup
-
----
-
-## 🚦 Getting Started
-
-### Minimal Setup (1 hour)
+### Minimal Setup (30 minutes)
 ```bash
-# 1. Install Claude Code CLI
+# 1. Claude Code CLI
 npm install -g @anthropic-ai/claude-code
-
-# 2. Install gh CLI
-brew install gh
-
-# 3. Install basic tools
-brew install tmux ripgrep jq
-
-# 4. Set API keys
 export ANTHROPIC_API_KEY="sk-ant-..."
-export GITHUB_TOKEN="ghp_..."
 
-# 5. Start using
-claude
+# 2. GitHub CLI
+brew install gh
+gh auth login
+
+# 3. Basic tools
+brew install tmux jq
+
+# 4. Test
+claude --version
 ```
 
 ### Full Setup (4-8 hours)
-See [SETUP_GUIDE.md](SETUP_GUIDE.md) for complete installation of all 30+ tools.
+See [SETUP_GUIDE.md](SETUP_GUIDE.md) for complete installation of all tools.
 
 ### Learning Path (4 weeks)
 **Week 1:** Claude Code + basic commands
-**Week 2:** Add 2-3 MCP servers
-**Week 3:** Testing + quality automation
+**Week 2:** Add 2-3 MCP servers (sequential-thinking, gemini, perplexity)
+**Week 3:** Testing + quality automation (pytest, /fake hook)
 **Week 4:** Multi-agent orchestration
 
 ---
 
 ## 💰 Cost Breakdown
 
-### Current Stack
+### Current Stack (~$40-60/mo)
 - **Claude Code Paid:** $20/mo (200K context)
 - **Cursor Pro:** $20/mo
-- **Optional services:** $0-20/mo (Perplexity, etc.)
-- **Total:** $40-60/mo
+- **Optional:** Perplexity Pro $20/mo
 
-### Cost Comparison
-| Tier | Monthly | What You Get |
-|------|---------|--------------|
-| **Free** | $0 | VS Code + Copilot free tier, Claude free tier, all CLI tools |
-| **Recommended** | $40-60 | Claude Paid + Cursor Pro + optional services |
-| **Power User** | $200-240 | Claude Enterprise (500K context) + premium services |
+### Free Tier ($0/mo)
+- VS Code + Copilot free tier
+- Claude free tier
+- All CLI tools (open source)
+- Self-hosted MCP servers
+
+### Power User (~$200-240/mo)
+- Claude Enterprise: $200/mo (500K context)
+- Cursor Pro: $20/mo
+- Premium services: $20-40/mo
+
+---
+
+## 🎓 Who This Is For
+
+**You should use this if:**
+- ✅ Building production systems with AI
+- ✅ Want terminal-first workflows
+- ✅ Need multi-agent coordination
+- ✅ Value automation over manual work
+- ✅ Cost-conscious but want advanced capabilities
+- ✅ Want evidence-based recommendations
+
+**This is NOT for you if:**
+- ❌ Prefer GUI-only tools
+- ❌ Want simple autocomplete-only AI
+- ❌ Unwilling to customize/configure
+- ❌ Don't write tests
 
 ---
 
 ## 🤝 Contributing
 
-This repo documents **one developer's production toolchain**. It's not meant to be prescriptive.
-
-**Contributions welcome:**
-- ✅ Bug fixes in documentation
-- ✅ Setup instruction improvements
+Contributions welcome for:
+- ✅ Documentation improvements
+- ✅ Setup instruction fixes
 - ✅ Additional evidence/metrics
-- ✅ Alternative tool comparisons
 
-**Not accepted:**
-- ❌ "You should use X instead" without evidence
-- ❌ Tools I don't actually use
+Not accepted:
+- ❌ "Use X instead" without evidence
+- ❌ Tools not actually used
 - ❌ Promotional content
 
 ---
 
 ## 📖 Background
 
-This toolchain evolved over 2+ years building [WorldArchitect.AI](https://github.com/jleechanorg/worldarchitect.ai), an AI-powered D&D platform. It represents:
+This toolchain evolved over 2+ years building [WorldArchitect.AI](https://github.com/jleechanorg/worldarchitect.ai), representing:
 
 - **19,044 commits** of real work
-- **3,308 testing commits** (quality-first approach)
+- **3,308 testing commits** (quality-first)
 - **80+ custom commands** refined through use
-- **4 autonomous AI agents** working in parallel
+- **4 autonomous AI agents** in production
 - **$40-60/mo** AI services (cost-conscious)
-
-**Not included in this repo:**
-- Custom MCP servers (proprietary)
-- Slash command implementations (project-specific)
-- Workflow automation scripts (WorldArchitect.AI-specific)
-
-See the main repo for those details.
-
----
-
-## 📜 License
-
-MIT License - See [LICENSE](LICENSE)
 
 ---
 
@@ -270,10 +644,10 @@ MIT License - See [LICENSE](LICENSE)
 
 - **Main Project:** [WorldArchitect.AI](https://github.com/jleechanorg/worldarchitect.ai)
 - **Author:** [@jleechan](https://github.com/jleechan)
-- **Evidence:** This repo's claims are backed by git analysis in TOOLCHAIN.md
+- **LinkedIn:** [12-Step Workflow Post](https://www.linkedin.com/posts/jeffrey-lee-chan_claude-web-start-and-codex-web-finish-as-activity-7400261997755478016-HLYP/)
 
 ---
 
 **Last Updated:** 2026-02-12
-**Based On:** 6 months of production usage (Aug 2025 - Feb 2026)
-**Commit Analysis:** 19,044 commits across WorldArchitect.AI
+**Analysis Period:** Aug 2025 - Feb 2026 (6 months)
+**Total Commits Analyzed:** 19,044

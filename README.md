@@ -361,7 +361,8 @@ export SMART_FAKE_TIMEOUT=180  # 3 minutes
 **Evidence:** 343 automatic invocations (30 days), 85% pass rate, 15% catch rate with actionable findings
 
 **Detailed docs:**
-- [FAKE_HOOK_ANALYSIS.md](FAKE_HOOK_ANALYSIS.md) - **Proof of value with real examples**
+- [FAKE_DETECTION_EXAMPLES.md](FAKE_DETECTION_EXAMPLES.md) - **3 real examples: detection → fix**
+- [FAKE_HOOK_ANALYSIS.md](FAKE_HOOK_ANALYSIS.md) - Complete value analysis with metrics
 - [WORKFLOWS.md](WORKFLOWS.md#automatic-fake-code-quality-hook) - Setup instructions
 
 ---

@@ -1,6 +1,6 @@
 # AI Development Recommendations
 
-**Evidence-based AI toolchain with 19,044 commits analyzed over 6 months**
+**Production-tested AI development toolchain for terminal-first workflows**
 
 ---
 
@@ -26,32 +26,38 @@
 
 ### Quick Reference: All Recommended Tools
 
+#### 1. Programs & Tools
+
 | Tool | What It Is | Why We Recommend It |
 |------|-----------|---------------------|
-| **AI Usage Tracker** | Token usage and cost tracking for Claude Code and Codex CLI | Essential for monitoring AI spend across platforms. Combines usage data from multiple sources into unified reports with daily averages and cache efficiency metrics. Available as pip/npm package or Claude skill. |
-| **Claude Code CLI** | Anthropic's official command-line AI assistant with 200K context window | Terminal-first workflow enables scripting and automation. Extensible via 10 active MCP servers. Supports 80+ custom slash commands and multi-agent coordination. The foundation of the entire toolchain. |
-| **gh CLI** | Official GitHub command-line tool for PR/issue management | Core to PR automation workflows with 7,950 /copilot invocations. Enables PR creation, review, and merge from terminal. Fully integrated with automation commands. |
-| **Gemini** | Google's LLM accessed via MCP integration | Highest usage with 1,440 MCP hits + 1,114 commit mentions. Provides structured output with JSON mode, code execution capabilities, and reliable fallback chains for production workloads. |
-| **beads (bd)** | MCP-integrated task tracking system | AI agents can read/write tasks in real-time. Used more than traditional issue trackers (259 commits). Binary accessed daily. Superior to Jira/Linear for AI-first workflows. |
-| **Cursor** | VS Code fork with native AI pair programming | Best-in-class autocomplete (multi-line, contextual). Chat with codebase using @ symbols. Cmd+K for inline edits. Active agent branches show production use. $20/mo. |
-| **Warp Terminal** | Modern terminal with AI features and enhanced UX | Built-in LLM inference for command suggestions and explanations. Renamable tabs for organization (critical when running multiple AI agents). Block-based output and command palette. Makes multi-agent workflows manageable. Free tier available. |
-| **Antigravity & Codex** | Alternative AI IDEs for specialized tasks | Antigravity provides experimental features via web IDE. Codex excels at precision and verification. Active agent branches prove production use. |
-| **MCP Ecosystem** | Model Context Protocol servers (10 active) | 1,285 mcp-cli uses in last week. Enables multi-model coordination (Gemini + Grok + Perplexity), browser automation, and research acceleration. Game-changing for AI workflows. |
-| **/copilot** | Autonomous PR processing command | Handles 100+ comment PRs automatically. 4-phase workflow with priority-based triage (CRITICAL → BLOCKING → IMPORTANT → ROUTINE). 7,950 invocations prove reliability. |
-| **/fixpr** | Intelligent PR fix automation | Analyzes failures, identifies root cause, makes minimal code changes. No gold-plating. Integrated verification. Saves hours on CI/CD issues. |
-| **/redgreen (TDD)** | Test-driven development workflow command | Enforces red-green pattern with evidence-based testing. 17.4% of commits are tests. Structured artifacts for reproducibility. |
-| **/fake** | Automatic code quality gate (hook) | Runs after EVERY Write operation. Catches 15% of code with issues (fake selectors, placeholder code). 343 automatic checks in 30 days. ~$5-10/mo prevents hours of debugging. |
-| **/execute** | General task execution command | 6,332 references in commits. Versatile command for running complex multi-step tasks. Heavy daily usage across all workflows. |
-| **/cerebras** | Fast code generation via Cerebras API | Rapid scaffolding and large code generation. Used for initial implementations before refinement with Claude/Cursor. |
-| **/orch** | Multi-agent orchestration command | 1,397 references. Coordinates 4 AI agents in parallel using tmux. For complex tasks requiring diverse AI capabilities. |
+| **[AI Usage Tracker](https://github.com/jleechanorg/ai-usage-tracker)** | Token usage and cost tracking for Claude Code and Codex CLI | Essential for monitoring AI spend across platforms. Combines usage data from multiple sources into unified reports with daily averages and cache efficiency metrics. Available as pip/npm package or Claude skill. |
+| **[Claude Code CLI](https://github.com/anthropics/claude-code)** | Anthropic's official command-line AI assistant with 200K context window | Terminal-first workflow enables scripting and automation. Extensible via MCP servers. Supports 80+ custom slash commands and multi-agent coordination. The foundation of the entire toolchain. |
+| **[gh CLI](https://cli.github.com/)** | Official GitHub command-line tool for PR/issue management | Core to PR automation workflows. Enables PR creation, review, and merge from terminal. Fully integrated with automation commands. |
+| **[Cursor](https://cursor.sh/)** | VS Code fork with native AI pair programming | Best-in-class autocomplete (multi-line, contextual). Chat with codebase using @ symbols. Cmd+K for inline edits. $20/mo. |
+| **[Warp Terminal](https://www.warp.dev/)** | Modern terminal with AI features and enhanced UX | Built-in LLM inference for command suggestions and explanations. Renamable tabs for organization (critical when running multiple AI agents). Block-based output and command palette. Makes multi-agent workflows manageable. Free tier available. |
+| **Antigravity & Codex** | Alternative AI IDEs for specialized tasks | Antigravity provides experimental features via web IDE. Codex excels at precision and verification. |
 
-**Key MCP Servers (part of MCP Ecosystem):**
-- **gemini-cli-mcp** (1,440 hits) - Primary LLM backend
-- **grok** (670 hits) - X.ai real-time intelligence
-- **perplexity-ask** (661 hits) - Research and web search
-- **sequential-thinking** (649 hits) - Enhanced reasoning chains
-- **chrome-superpower** (407 hits) - Browser automation
-- **context7** (341 hits) - Library documentation lookup
+#### 2. MCP Servers
+
+| MCP Server | What It Is | Why We Recommend It |
+|-----------|-----------|---------------------|
+| **[Gemini MCP](https://github.com/google/generative-ai-python)** | Google's LLM accessed via MCP integration | Provides structured output with JSON mode, code execution capabilities, and reliable fallback chains for production workloads. Multi-model coordination. |
+| **[beads](https://github.com/modelcontextprotocol/servers/tree/main/src/beads)** | MCP-integrated task tracking system | AI agents can read/write tasks in real-time. Superior to Jira/Linear for AI-first workflows. |
+| **[grok](https://modelcontextprotocol.io/)** | X.ai's real-time intelligence LLM | Real-time data and current events. Complements Claude and Gemini for fresh information. |
+| **[perplexity-ask](https://modelcontextprotocol.io/)** | Research and web search via Perplexity | Fast research with citations. Better than manual Google searches for technical questions. |
+| **[sequential-thinking](https://modelcontextprotocol.io/)** | Enhanced reasoning chains | Improves complex problem-solving by breaking down multi-step reasoning. |
+| **[chrome-superpower](https://modelcontextprotocol.io/)** | Browser automation via Chrome DevTools Protocol | Automate web interactions, testing, and scraping directly from AI workflows. |
+| **[context7](https://modelcontextprotocol.io/)** | Library documentation lookup | Instant access to up-to-date docs for any library without leaving terminal. |
+
+#### 3. Slash Commands
+
+| Command | What It Is | Why We Recommend It |
+|---------|-----------|---------------------|
+| **/copilot** | Autonomous PR processing command | Handles 100+ comment PRs automatically. 4-phase workflow with priority-based triage (CRITICAL → BLOCKING → IMPORTANT → ROUTINE). |
+| **/fixpr** | Intelligent PR fix automation | Analyzes failures, identifies root cause, makes minimal code changes. No gold-plating. Integrated verification. |
+| **/redgreen** | Test-driven development workflow | Enforces red-green pattern with evidence-based testing. Structured artifacts for reproducibility. |
+| **/fake** | Automatic code quality gate (hook) | Runs after EVERY Write operation. Catches 15% of code with issues (fake selectors, placeholder code). |
+| **/execute** | General task execution command | Versatile command for running complex multi-step tasks. Heavy daily usage across all workflows. |
 
 ---
 

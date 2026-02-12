@@ -46,7 +46,6 @@ curl -fsSL https://cli.claude.ai/install.sh | sh
 export ANTHROPIC_API_KEY="sk-ant-..."
 ```
 
-**Evidence:** 6,110 file touches in `.claude/commands/` directory
 
 **Detailed docs:** [TOOLCHAIN.md](TOOLCHAIN.md#claude-code-cli), [SETUP_GUIDE.md](SETUP_GUIDE.md#claude-code-cli)
 
@@ -71,7 +70,6 @@ curl -sL https://github.com/cli/cli/releases/download/v2.40.1/gh_2.40.1_linux_am
 mkdir -p ~/.local/bin && cp /tmp/gh_2.40.1_linux_amd64/bin/gh ~/.local/bin/
 ```
 
-**Evidence:** Accessed daily, 6,377 git mentions in last week
 
 **Detailed docs:** [SETUP_GUIDE.md](SETUP_GUIDE.md#gh-cli-github)
 
@@ -92,7 +90,6 @@ mkdir -p ~/.local/bin && cp /tmp/gh_2.40.1_linux_amd64/bin/gh ~/.local/bin/
 # See MCP Servers section below
 ```
 
-**Evidence:** #1 most-used MCP server
 
 **Detailed docs:** [TOOLCHAIN.md](TOOLCHAIN.md#gemini-google), [WORKFLOWS.md](WORKFLOWS.md#-mcp-heavy-usage-pattern)
 
@@ -113,7 +110,6 @@ bd list
 bd create "Task description"
 ```
 
-**Evidence:** 539 MCP hits, binary accessed Feb 11, 2026
 
 **Detailed docs:** [TOOLCHAIN.md](TOOLCHAIN.md#beads-bd), [WORKFLOWS.md](WORKFLOWS.md#-mcp-heavy-usage-pattern)
 
@@ -133,7 +129,6 @@ brew install tmux
 tmux new -s mysession
 ```
 
-**Evidence:** 287 orchestration commits
 
 **Detailed docs:** [WORKFLOWS.md](WORKFLOWS.md#-multi-agent-orchestration)
 
@@ -156,7 +151,6 @@ tmux new -s mysession
 # Install and sign in
 ```
 
-**Evidence:** Active `cursor/*` branches, binary accessed Feb 7
 
 **Cost:** $20/mo (Pro)
 
@@ -178,7 +172,6 @@ tmux new -s mysession
 # Download from https://www.warp.dev/
 ```
 
-**Evidence:** Daily driver (no git traces as it's just a terminal)
 
 **Cost:** Free
 
@@ -199,7 +192,6 @@ tmux new -s mysession
 # Download from official sites
 ```
 
-**Evidence:** Codex has active agent branches, 268 mentions in last week
 
 **Detailed docs:** [TOOLCHAIN.md](TOOLCHAIN.md#antigravity--codex)
 
@@ -234,7 +226,6 @@ mcp-cli servers  # Verify active servers
 9. **mcp_mail** (28 hits) - Agent messaging
 10. **plugin_superpowers-chrome** - Obra Superpowers
 
-**Evidence:** 5,075 total MCP diff hits over 6 months, 1,285 uses in last week
 
 **Detailed docs:** [WORKFLOWS.md](WORKFLOWS.md#-mcp-heavy-usage-pattern), [SETUP_GUIDE.md](SETUP_GUIDE.md#mcp-servers-10-active)
 
@@ -255,7 +246,6 @@ mcp-cli servers  # Verify active servers
 /copilot  # Processes all open PR comments
 ```
 
-**Evidence:** 7,950 diff references, 343 uses in last week
 
 **Detailed docs:** [WORKFLOWS.md](WORKFLOWS.md#-copilot---autonomous-pr-processing)
 
@@ -275,7 +265,6 @@ mcp-cli servers  # Verify active servers
 /fixpr 123    # Fix specific PR number
 ```
 
-**Evidence:** 5,124 diff references, 760 uses in last week
 
 **Detailed docs:** [WORKFLOWS.md](WORKFLOWS.md#-fixpr---intelligent-pr-fixing)
 
@@ -294,7 +283,6 @@ mcp-cli servers  # Verify active servers
 /redgreen  # or /tdd
 ```
 
-**Evidence:** 3,817 combined references, 277 uses in last week
 
 **Detailed docs:** [WORKFLOWS.md](WORKFLOWS.md#-redgreen---test-driven-development)
 
@@ -318,7 +306,6 @@ export SMART_FAKE_TIMEOUT=180  # 3 minutes
 # See WORKFLOWS.md for full setup
 ```
 
-**Evidence:** 343 automatic invocations (30 days), 85% pass rate, 15% catch rate with actionable findings
 
 **Detailed docs:**
 - [FAKE_DETECTION_EXAMPLES.md](FAKE_DETECTION_EXAMPLES.md) - **3 real examples: detection → fix**
@@ -358,7 +345,6 @@ docker --version
 docker compose version
 ```
 
-**Evidence:** 475 mentions in last week (despite only 17 commits)
 
 **Detailed docs:** [SETUP_GUIDE.md](SETUP_GUIDE.md#docker--docker-compose)
 
@@ -379,7 +365,6 @@ npx playwright install
 npx playwright test
 ```
 
-**Evidence:** 69 commits, 405 mentions in last week
 
 **Detailed docs:** [WORKFLOWS.md](WORKFLOWS.md#-browser-testing)
 
@@ -399,7 +384,6 @@ brew install httpie
 http GET api.example.com/users
 ```
 
-**Evidence:** Present in workflow
 
 **Detailed docs:** [SETUP_GUIDE.md](SETUP_GUIDE.md#httpie)
 
@@ -419,7 +403,6 @@ brew install google-cloud-sdk
 gcloud auth login
 ```
 
-**Evidence:** 192 deploy commits
 
 **Detailed docs:** [SETUP_GUIDE.md](SETUP_GUIDE.md#google-cloud-sdk)
 
@@ -471,7 +454,6 @@ Complete development lifecycle leveraging web + local AI tools.
 ### 2. Multi-Agent Orchestration
 4 AI agents (copilot, cursor, codex, claude) working autonomously in parallel.
 
-**Evidence:** 4 agent branch prefixes, 287 orchestration commits
 
 **Details:** [WORKFLOWS.md](WORKFLOWS.md#-multi-agent-orchestration)
 

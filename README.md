@@ -35,7 +35,8 @@
 | **[gh CLI](https://cli.github.com/)** | Official GitHub command-line tool for PR/issue management | Core to PR automation workflows. Enables PR creation, review, and merge from terminal. Fully integrated with automation commands. |
 | **[Cursor](https://cursor.sh/)** | VS Code fork with native AI pair programming | Best-in-class autocomplete (multi-line, contextual). Chat with codebase using @ symbols. Cmd+K for inline edits. $20/mo. |
 | **[Warp Terminal](https://www.warp.dev/)** | Modern terminal with AI features and enhanced UX | Built-in LLM inference for command suggestions and explanations. Renamable tabs for organization (critical when running multiple AI agents). Block-based output and command palette. Makes multi-agent workflows manageable. Free tier available. |
-| **Antigravity & Codex** | Alternative AI IDEs for specialized tasks | Antigravity provides experimental features via web IDE. Codex excels at precision and verification. |
+| **[Codex CLI](https://codex.cli/)** | Alternative CLI AI assistant focused on precision | Excellent for precision work and verification. Provides detailed, accurate responses when you need high-quality output without iteration. |
+| **[Antigravity](https://antigravity.com/)** | Web-based AI IDE with generous token limits | Unconstrained usage of Opus 4.6 and other premium models. Great for heavy workloads. **Warning:** Agent manager is flaky and crashes frequently - save work often. |
 
 #### 2. MCP Servers
 

@@ -2,13 +2,12 @@
 
 **Real-world AI coding toolchain from production use at [WorldArchitect.AI](https://github.com/jleechanorg/worldarchitect.ai)**
 
-> Based on 19,044 commits over 6 months, running a production AI-powered D&D platform
+> Battle-tested over 2+ years building a production AI-powered D&D platform
 
 ---
 
 ## 📑 Table of Contents
 
-- [What This Is](#-what-this-is)
 - [Executive Summary](#-executive-summary)
   - [Core Tools](#core-tools-daily-use)
   - [AI Assistants](#ai-assistants)
@@ -22,27 +21,6 @@
 - [Getting Started](#-getting-started)
 - [Cost Breakdown](#-cost-breakdown)
 - [Who This Is For](#-who-this-is-for)
-
----
-
-## 🎯 What This Is
-
-This is **NOT** a "top 10 AI tools" listicle. This is a **battle-tested toolchain** extracted from actual production usage, backed by git commit evidence and real workflow patterns.
-
-**Evidence-based recommendations:**
-- ✅ Git commit frequency analysis (6 months, 19K+ commits)
-- ✅ MCP server usage metrics (5,075 diff hits)
-- ✅ Slash command invocation patterns (7,950+ /copilot refs)
-- ✅ Active directory analysis (29,470 file touches)
-- ✅ Binary access timestamps
-- ✅ Last week analysis (1,285 mcp-cli uses, 6,377 git mentions)
-
-**What makes this different:**
-- **Proven at scale** - Production system serving real users
-- **Multi-agent orchestration** - 4 AI agents working autonomously
-- **High automation** - 80+ custom commands, automatic quality gates
-- **Quality-first** - 17.4% of all commits are tests
-- **Cost-conscious** - ~$40-60/mo for advanced capabilities
 
 ---
 
@@ -61,9 +39,11 @@ This is **NOT** a "top 10 AI tools" listicle. This is a **battle-tested toolchai
 
 **How to install:**
 ```bash
-npm install -g @anthropic-ai/claude-code
+# Install Claude Code
+curl -fsSL https://cli.claude.ai/install.sh | sh
+
+# Set API key
 export ANTHROPIC_API_KEY="sk-ant-..."
-claude --setup
 ```
 
 **Evidence:** 6,110 file touches in `.claude/commands/` directory
@@ -72,27 +52,7 @@ claude --setup
 
 ---
 
-#### 2. pytest
-**What it is:** Python testing framework for unit, integration, and E2E tests
-
-**Why valuable:**
-- 17.4% of all commits are tests (3,308 testing commits)
-- Evidence-based testing protocol with structured artifacts
-- Integration with `/testllm` for AI-driven test execution
-
-**How to install:**
-```bash
-pip install pytest pytest-cov
-pytest tests/
-```
-
-**Evidence:** 3,308 commits, 1,804 mentions in last week
-
-**Detailed docs:** [WORKFLOWS.md](WORKFLOWS.md#-redgreen---test-driven-development)
-
----
-
-#### 3. gh CLI (GitHub CLI)
+#### 2. gh CLI (GitHub CLI)
 **What it is:** Official GitHub command-line tool for PR/issue management
 
 **Why valuable:**
@@ -117,7 +77,7 @@ mkdir -p ~/.local/bin && cp /tmp/gh_2.40.1_linux_amd64/bin/gh ~/.local/bin/
 
 ---
 
-#### 4. Gemini (Google)
+#### 3. Gemini (Google)
 **What it is:** Primary LLM backend via MCP integration
 
 **Why valuable:**
@@ -138,7 +98,7 @@ mkdir -p ~/.local/bin && cp /tmp/gh_2.40.1_linux_amd64/bin/gh ~/.local/bin/
 
 ---
 
-#### 5. beads (bd)
+#### 4. beads (bd)
 **What it is:** MCP-integrated task tracking system
 
 **Why valuable:**
@@ -159,7 +119,7 @@ bd create "Task description"
 
 ---
 
-#### 6. tmux
+#### 5. tmux
 **What it is:** Terminal multiplexer for session management
 
 **Why valuable:**
@@ -181,7 +141,7 @@ tmux new -s mysession
 
 ### AI Assistants
 
-#### 7. Cursor
+#### 6. Cursor
 **What it is:** VS Code fork with native AI pair programming
 
 **Why valuable:**
@@ -204,7 +164,7 @@ tmux new -s mysession
 
 ---
 
-#### 8. Warp Terminal
+#### 7. Warp Terminal
 **What it is:** Modern terminal with AI features and better UX
 
 **Why valuable:**
@@ -226,12 +186,12 @@ tmux new -s mysession
 
 ---
 
-#### 9. Antigravity & Codex
+#### 8. Antigravity & Codex
 **What they are:** Alternative AI IDEs for specialized tasks
 
 **Why valuable:**
-- Antigravity: Experimental features
-- Codex: Precision and verification (268 mentions/week)
+- Antigravity: Experimental features (web-based IDE)
+- Codex: Precision and verification (CLI tool)
 - Active agent branches (`codex/*`)
 
 **How to install:**
@@ -247,7 +207,7 @@ tmux new -s mysession
 
 ### MCP Servers
 
-#### 10. MCP Ecosystem (10 Active Servers)
+#### 9. MCP Ecosystem (10 Active Servers)
 **What it is:** Model Context Protocol servers for multi-AI coordination
 
 **Why valuable:**
@@ -282,7 +242,7 @@ mcp-cli servers  # Verify active servers
 
 ### Automation Commands
 
-#### 11. /copilot
+#### 10. /copilot
 **What it is:** Autonomous PR processing command
 
 **Why valuable:**
@@ -301,7 +261,7 @@ mcp-cli servers  # Verify active servers
 
 ---
 
-#### 12. /fixpr
+#### 11. /fixpr
 **What it is:** Intelligent PR fix automation
 
 **Why valuable:**
@@ -321,7 +281,7 @@ mcp-cli servers  # Verify active servers
 
 ---
 
-#### 13. /redgreen (TDD)
+#### 12. /redgreen (TDD)
 **What it is:** Test-driven development workflow
 
 **Why valuable:**
@@ -340,7 +300,7 @@ mcp-cli servers  # Verify active servers
 
 ---
 
-#### 14. /fake (Automatic Hook)
+#### 13. /fake (Automatic Hook)
 **What it is:** Automatic code quality gate that runs after EVERY Write operation
 
 **Why valuable:**
@@ -367,10 +327,10 @@ export SMART_FAKE_TIMEOUT=180  # 3 minutes
 
 ---
 
-#### 15. Other Commands
+#### 14. Other Commands
 **Active commands with evidence:**
 - `/execute` (6,332 refs) - General task execution
-- `/cerebras` (4,901 refs) - Fast code generation
+- `/cerebras` - Fast code generation
 - `/commentreply` (4,007 refs) - Comment automation
 - `/research` (2,213 refs) - Research patterns
 - `/think` (1,743 refs) - Reasoning
@@ -383,7 +343,7 @@ export SMART_FAKE_TIMEOUT=180  # 3 minutes
 
 ### Development Tools
 
-#### 16. Docker + Docker Compose
+#### 15. Docker + Docker Compose
 **What it is:** Containerization platform
 
 **Why valuable:**
@@ -404,7 +364,7 @@ docker compose version
 
 ---
 
-#### 17. Playwright
+#### 16. Playwright
 **What it is:** Modern browser automation framework
 
 **Why valuable:**
@@ -425,7 +385,7 @@ npx playwright test
 
 ---
 
-#### 18. httpie
+#### 17. httpie
 **What it is:** Modern HTTP client (better than curl)
 
 **Why valuable:**
@@ -445,7 +405,7 @@ http GET api.example.com/users
 
 ---
 
-#### 19. Google Cloud Platform
+#### 18. Google Cloud Platform
 **What it is:** Cloud services (Cloud Run, Firebase, Firestore)
 
 **Why valuable:**
@@ -628,16 +588,6 @@ Not accepted:
 - ❌ Promotional content
 
 ---
-
-## 📖 Background
-
-This toolchain evolved over 2+ years building [WorldArchitect.AI](https://github.com/jleechanorg/worldarchitect.ai), representing:
-
-- **19,044 commits** of real work
-- **3,308 testing commits** (quality-first)
-- **80+ custom commands** refined through use
-- **4 autonomous AI agents** in production
-- **$40-60/mo** AI services (cost-conscious)
 
 ---
 

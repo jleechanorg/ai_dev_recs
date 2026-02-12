@@ -54,6 +54,7 @@
 
 | Command | What It Is | Why We Recommend It |
 |---------|-----------|---------------------|
+| **[Obra Superpowers](https://superpowers.obra.dev/)** | Browser automation and control via Chrome extension | Direct browser control from Claude Code. Navigate, click, fill forms, screenshot - all from your AI workflow. Powerful for web testing and automation. |
 | **/copilot** | Autonomous PR processing command | Handles 100+ comment PRs automatically. 4-phase workflow with priority-based triage (CRITICAL → BLOCKING → IMPORTANT → ROUTINE). |
 | **/fixpr** | Intelligent PR fix automation | Analyzes failures, identifies root cause, makes minimal code changes. No gold-plating. Integrated verification. |
 | **/redgreen** | Test-driven development workflow | Enforces red-green pattern with evidence-based testing. Structured artifacts for reproducibility. |

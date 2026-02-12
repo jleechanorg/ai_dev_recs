@@ -8,6 +8,130 @@
 
 These workflows emerged from 19,044 commits over 6 months. They're not theoretical - they're battle-tested in production.
 
+**Key Philosophy:** "Focus on AI review/quality as much as generation, if not more" - [Jeffrey Lee-Chan](https://www.linkedin.com/posts/jeffrey-lee-chan_claude-web-start-and-codex-web-finish-as-activity-7400261997755478016-HLYP/)
+
+---
+
+## 🎯 The 12-Step Multi-AI Development Workflow
+
+**Source:** Production workflow from WorldArchitect.AI development
+
+### Overview
+A complete development lifecycle leveraging multiple AI models, automated review, and quality gates. This workflow uses web-based AI for initial development, local tools for complex changes, and automated systems for review and refinement.
+
+### Phase 1: Web-Based Development (Steps 1-4)
+
+**Step 1: Initial Coding with Claude Web**
+- **Tool:** Claude web (claude.ai)
+- **Why:** "Most permissive" container capabilities for rapid iteration
+- **Use:** First-pass implementation, prototyping
+
+**Step 2: Iteration with Claude or Codex**
+- **Tools:** Claude web OR Codex web
+- **Decision criteria:**
+  - Claude: Speed and creativity
+  - Codex: Precision and technical accuracy
+  - Consider API quota limitations
+- **Pattern:** Iterate until feature complete
+
+**Step 3: Automated Code Review (4 Bots)**
+- **Tools:** CodeRabbit, bugbot, GitHub Copilot, Codex
+- **Deployment:** GitHub workflows trigger on PR
+- **Purpose:** Parallel review from multiple perspectives
+
+**Step 4: Automated Testing**
+- **Tool:** GitHub Actions workflows
+- **Tests:** Unit, integration, E2E
+- **Gate:** Must pass before proceeding
+
+### Phase 2: Local Development (Steps 5-8)
+
+**Step 5: Pull Complex Changes to Local**
+- **Trigger:** Web tools reach limitations
+- **Environment:** MacBook with local AI tools
+- **Advantage:** Full control, custom tooling
+
+**Step 6: Claude for Speed, Codex for Precision**
+- **Primary:** Claude Code CLI (fast iteration)
+- **Secondary:** Codex (verification, precision)
+- **Pattern:** Claude generates → Codex verifies
+
+**Step 7: Multi-Tool Review**
+- **Tools:** Cursor Composer, Gemini 3
+- **Purpose:** Additional perspectives on code quality
+
+**Step 8: Custom MCP Server Review**
+- **Tool:** Multi-model AI MCP server
+- **Purpose:** Coordinated review across models
+- **Models:** Claude, Gemini, Grok, Perplexity
+
+### Phase 3: Automation & Finalization (Steps 9-12)
+
+**Step 9: Manual Review of AI Summaries**
+- **Trigger:** Larger changes requiring human judgment
+- **Input:** Aggregated AI feedback
+- **Decision:** Proceed, iterate, or redesign
+
+**Step 10: Automated Fix Requests**
+- **Tool:** Cron jobs
+- **Actions:**
+  - Request fixes from Codex
+  - Gather review feedback from bots
+- **Frequency:** Scheduled automation
+
+**Step 11: Automated Conflict Resolution**
+- **Tools:** Automated merge conflict resolution
+- **Testing:** Automated test fixing
+- **Safety:** Only non-breaking changes
+
+**Step 12: Final Manual Decision**
+- **Human:** Make merge decision
+- **Inputs:** All AI feedback, test results, conflict status
+- **Action:** Merge or request additional changes
+
+### Critical Success Factors
+
+1. **Quality Over Speed**
+   - "Focus on AI review/quality as much as generation"
+   - Multiple review stages with different tools
+   - Automated testing at every step
+
+2. **Tool Specialization**
+   - Claude: Speed and creativity
+   - Codex: Precision and verification
+   - Cursor: Interactive refinement
+   - Gemini: Alternative perspective
+
+3. **Automation Where Possible**
+   - GitHub workflows for testing
+   - Cron jobs for routine fixes
+   - Automated conflict resolution
+   - Parallel review execution
+
+4. **Human-in-the-Loop**
+   - Manual review of summaries (Step 9)
+   - Final merge decision (Step 12)
+   - Override automation when needed
+
+### Evidence in This Repo
+
+This workflow is visible in the git evidence:
+- **4 agent branch prefixes** (copilot/, cursor/, codex/, claude/)
+- **343 `/copilot` uses** (automated PR processing)
+- **268 Codex mentions** (verification role)
+- **1,285 mcp-cli uses** (multi-model coordination)
+- **3,308 testing commits** (17.4% of all work)
+
+### Comparison: Web vs Local Development
+
+| Aspect | Web (Steps 1-4) | Local (Steps 5-8) |
+|--------|-----------------|-------------------|
+| **Speed** | Fast (no setup) | Medium (tool loading) |
+| **Customization** | Limited | Full (80+ commands) |
+| **Automation** | GitHub only | Full local automation |
+| **Models** | Web interfaces | MCP integration |
+| **Complexity** | Simple changes | Complex refactors |
+
 ---
 
 ## 🤖 Multi-Agent Orchestration
@@ -587,13 +711,14 @@ User choice based on context
 - **12+ hooks** (PreToolUse, PostToolUse, UserPromptSubmit)
 
 ### Hooks
+
 **PreToolUse:**
 - Context validation
 - Command optimization
 - File creation blocking
 
 **PostToolUse:**
-- Fake code detection
+- **Fake code detection** (automatic quality gate)
 - Output trimming
 - Evidence validation
 
@@ -601,11 +726,269 @@ User choice based on context
 - Command composition
 - Slash command expansion
 
+#### Automatic `/fake` Code Quality Hook
+
+**Hook:** `smart_fake_code_detection.sh`
+
+**Trigger:** After EVERY `Write` operation (PostToolUse)
+
+**What it does:**
+```bash
+# Runs headlessly after each file write
+claude -p << EOF
+/fake
+${FILE_LIST}
+Analyze these changes for fake or simulated code,
+placeholder logic, speculative API responses, or
+fabricated data.
+EOF
+```
+
+**Evidence:** 343 automatic invocations in last week (Feb 5-12, 2026)
+
+**Configuration:**
+
+1. **Hook Registration** (in `.claude/settings.json`):
+```json
+{
+  "PostToolUse": [
+    {
+      "matcher": "Write",
+      "hooks": [
+        {
+          "type": "command",
+          "command": "bash -c 'if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then ROOT=$(git rev-parse --show-toplevel); [ -x \"$ROOT/.claude/hooks/smart_fake_code_detection.sh\" ] && exec \"$ROOT/.claude/hooks/smart_fake_code_detection.sh\"; fi; exit 0'",
+          "description": "Run automated /fake audits via claude -p after file writes"
+        }
+      ]
+    }
+  ]
+}
+```
+
+2. **Environment Variables:**
+- `SMART_FAKE_TIMEOUT` - Timeout for `/fake` audit (default: 120 seconds)
+- `SMART_FAKE_HOOK_ACTIVE` - Prevents recursive invocation (set automatically)
+
+3. **Hook File Location:**
+- Project: `.claude/hooks/smart_fake_code_detection.sh`
+- Global: `~/.claude/hooks/smart_fake_code_detection.sh`
+
+4. **Logs:**
+- Location: `/tmp/claude-code-logs/smart_fake_code_detection_${BRANCH}.log`
+- Format: Timestamped entries with file lists and results
+
+**Setup Instructions:**
+
+```bash
+# 1. Copy hook file to project
+cp ~/.claude/hooks/smart_fake_code_detection.sh .claude/hooks/
+
+# 2. Make executable
+chmod +x .claude/hooks/smart_fake_code_detection.sh
+
+# 3. Add registration to .claude/settings.json (see above)
+
+# 4. Optional: Set timeout
+export SMART_FAKE_TIMEOUT=180  # 3 minutes
+
+# 5. Test - write any file and check logs
+echo "test" > test.txt
+tail /tmp/claude-code-logs/smart_fake_code_detection_*.log
+```
+
+**Why This Matters:**
+
+- **Automatic quality gate** - Every file write is audited
+- **No manual invocation** - Runs silently in background
+- **Fast feedback** - Catches issues before commit
+- **Evidence-based** - Logs all audits for review
+
+**Companion Hook:** `detect_speculation_and_fake_code.sh`
+- Runs on ALL PostToolUse events (not just Write)
+- AGGRESSIVE detection with strong warnings
+- Configured separately in settings.json
+
 ### Skill Files
 - **40+ skill files** in `.claude/skills/`
 - **Most-modified:** evidence-standards.md (68 commits)
 - Procedural knowledge base
 - Referenced by commands
+
+---
+
+## 🔌 MCP Heavy Usage Pattern
+
+**Evidence:** 1,285 mcp-cli mentions in last week (Feb 5-12, 2026)
+
+### Why MCP is Central
+
+MCP (Model Context Protocol) enables **multi-model coordination** - the key to advanced AI workflows.
+
+**10 Active MCP Servers:**
+1. `plugin_superpowers-chrome_chrome` - Obra Superpowers Chrome
+2. `sequential-thinking` (649 hits) - Enhanced reasoning
+3. `context7` (341 hits) - Library documentation
+4. `chrome-superpower` (407 hits) - Browser automation
+5. `gemini-cli-mcp` (1,440 hits) - Gemini API (HIGHEST)
+6. `grok` (670 hits) - X.ai real-time intelligence
+7. `perplexity-ask` (661 hits) - Research/search
+8. `beads` (539 hits) - Task tracking
+9. `mcp_mail` (28 hits) - Agent messaging
+10. `claude-in-chrome` - Chrome extension control
+
+### Usage Pattern
+
+**Direct MCP Calls (Preferred over Commands)**
+
+Instead of:
+```bash
+/browser navigate http://localhost:3000
+```
+
+Use MCP directly:
+```bash
+mcp-cli call chrome-superpower/navigate '{"url": "http://localhost:3000"}'
+```
+
+**Why:**
+- Faster (no command overhead)
+- More control (access all MCP features)
+- Better for automation (scriptable)
+- Composable (pipe-able)
+
+### Real Usage Examples
+
+**1. Multi-Model Research (`/perp` command)**
+```bash
+# Single command queries 4+ sources
+mcp-cli call perplexity-ask/perplexity_search_web '{"query": "..."}'
+mcp-cli call gemini-cli-mcp/gemini_chat_pro '{"messages": [...]}'
+mcp-cli call grok/grok_send_message '{"message": "..."}'
+# + WebSearch built-in
+# + DuckDuckGo
+```
+
+Evidence: 943 `/perp` references = heavy multi-model research
+
+**2. Browser Automation (NOT `/browser` command!)**
+```bash
+# Navigate
+mcp-cli call chrome-superpower/navigate '{"url": "..."}'
+
+# Click element
+mcp-cli call claude-in-chrome/click '{"selector": "#login"}'
+
+# Execute JavaScript
+mcp-cli call chrome-superpower/eval '{"code": "document.title"}'
+
+# Screenshot
+mcp-cli call claude-in-chrome/screenshot '{"path": "/tmp/screenshot.png"}'
+```
+
+Evidence: 407 chrome MCP hits, 405 Playwright mentions
+
+**3. Task Tracking with Beads**
+```bash
+# List tasks
+mcp-cli call beads/list '{}'
+
+# Create task
+mcp-cli call beads/create '{"subject": "...", "description": "..."}'
+
+# Update task
+mcp-cli call beads/update '{"taskId": "123", "status": "completed"}'
+```
+
+Evidence: 539 beads MCP hits, binary accessed daily
+
+**4. Sequential Thinking (Enhanced Reasoning)**
+```bash
+mcp-cli call sequential-thinking/sequentialthinking '{"task": "complex problem"}'
+```
+
+Evidence: 649 MCP hits - used for complex architectural decisions
+
+### Setup: Enabling MCP Servers
+
+**1. Install MCP CLI:**
+```bash
+npm install -g @modelcontextprotocol/cli
+```
+
+**2. Verify Servers:**
+```bash
+mcp-cli servers
+# Should show all 10 connected servers
+```
+
+**3. Test a Server:**
+```bash
+# Check schema first
+mcp-cli info gemini-cli-mcp/gemini_chat_pro
+
+# Then call
+mcp-cli call gemini-cli-mcp/gemini_chat_pro '{"messages": [{"role": "user", "content": "test"}]}'
+```
+
+**4. Add to Custom Commands:**
+```bash
+# In .claude/commands/mycommand.md
+/execute Call gemini and perplexity for second opinion:
+- mcp-cli call gemini-cli-mcp/gemini_chat_pro '{...}'
+- mcp-cli call perplexity-ask/perplexity_search_web '{...}'
+Compare results and synthesize
+```
+
+### Integration Patterns
+
+**Pattern 1: Multi-Model Validation**
+```bash
+# /secondo command implementation
+query="$1"
+gemini_result=$(mcp-cli call gemini-cli-mcp/gemini_chat_pro "{\"messages\": [{\"role\": \"user\", \"content\": \"$query\"}]}")
+grok_result=$(mcp-cli call grok/grok_send_message "{\"message\": \"$query\"}")
+perplexity_result=$(mcp-cli call perplexity-ask/perplexity_search_web "{\"query\": \"$query\"}")
+
+# Compare and synthesize
+claude "Compare these responses:\n1. Gemini: $gemini_result\n2. Grok: $grok_result\n3. Perplexity: $perplexity_result"
+```
+
+Evidence: 106 `/secondo` commits
+
+**Pattern 2: Browser + Task Tracking**
+```bash
+# Run browser test and log to beads
+test_result=$(mcp-cli call chrome-superpower/navigate '{"url": "..."}')
+if [ $? -ne 0 ]; then
+  mcp-cli call beads/create "{\"subject\": \"Browser test failed\", \"description\": \"$test_result\"}"
+fi
+```
+
+Evidence: 539 beads + 407 chrome MCP hits = integrated workflow
+
+**Pattern 3: Research → Documentation**
+```bash
+# Research with perplexity, document with claude
+research=$(mcp-cli call perplexity-ask/perplexity_search_web '{"query": "..."}')
+docs=$(mcp-cli call context7/get-library-docs '{"library": "react"}')
+
+# Synthesize into documentation
+claude "Write docs based on:\nResearch: $research\nOfficial docs: $docs"
+```
+
+Evidence: 661 perplexity + 341 context7 hits
+
+### Why 1,285 Uses in One Week?
+
+**MCP enables:**
+1. **Multi-model workflows** - Query multiple AIs in parallel
+2. **Automation** - Script complex workflows
+3. **Integration** - Connect disparate tools
+4. **Specialization** - Use right model for each task
+
+**Without MCP:** Single AI, limited capabilities
+**With MCP:** Coordinated multi-AI system
 
 ---
 

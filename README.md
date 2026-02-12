@@ -1,42 +1,6 @@
 # AI Development Recommendations
 
-**Real-world AI coding toolchain from production use at [WorldArchitect.AI](https://github.com/jleechanorg/worldarchitect.ai)**
-
-> Battle-tested over 2+ years building a production AI-powered D&D platform
-
----
-
-## 📊 Track Your AI Usage
-
-Using multiple AI tools means tracking costs across platforms. The **[AI Usage Tracker](https://github.com/jleechanorg/ai-usage-tracker)** provides unified token usage and cost reporting for Claude Code and Codex CLI.
-
-**Quick install:**
-```bash
-# pip
-pip install ai-usage-tracker
-ai-usage-tracker
-
-# npm
-npm install -g ai-usage-tracker
-ai-usage-tracker-js
-```
-
-**Key features:**
-- Combined Claude + Codex usage in one view
-- Daily cost breakdown and averages
-- Cache efficiency monitoring (90%+ read rates)
-- Table or JSON output for automation
-- Available as Claude skill: `/combined-usage`
-
-**Typical output:** Daily averages, cost per platform, total spend tracking
-```
-DAILY AVERAGES (Last 7 complete days)
-Claude:      237M tokens/day  |  $123.39/day
-Codex:       512M tokens/day  |  $98.76/day
-TOTAL:       749M tokens/day  |  $222.15/day
-```
-
-With a $40-60/month baseline for tools (see [Cost Breakdown](#-cost-breakdown)), tracking actual API usage helps optimize spending and identify patterns.
+**Evidence-based AI toolchain with 19,044 commits analyzed over 6 months**
 
 ---
 
@@ -48,7 +12,6 @@ With a $40-60/month baseline for tools (see [Cost Breakdown](#-cost-breakdown)),
   - [AI Assistants](#ai-assistants)
   - [MCP Servers](#mcp-servers)
   - [Automation Commands](#automation-commands)
-  - [Development Tools](#development-tools)
 - [Quick Stats](#-quick-stats)
 - [Complete Stack](#-the-complete-stack)
 - [Unique Innovations](#-unique-innovations)
@@ -70,9 +33,8 @@ With a $40-60/month baseline for tools (see [Cost Breakdown](#-cost-breakdown)),
 | **gh CLI** | Official GitHub command-line tool for PR/issue management | Core to PR automation workflows with 7,950 /copilot invocations. Enables PR creation, review, and merge from terminal. Fully integrated with automation commands. |
 | **Gemini** | Google's LLM accessed via MCP integration | Highest usage with 1,440 MCP hits + 1,114 commit mentions. Provides structured output with JSON mode, code execution capabilities, and reliable fallback chains for production workloads. |
 | **beads (bd)** | MCP-integrated task tracking system | AI agents can read/write tasks in real-time. Used more than traditional issue trackers (259 commits). Binary accessed daily. Superior to Jira/Linear for AI-first workflows. |
-| **tmux** | Terminal multiplexer for session management | Essential for multi-agent orchestration (4 agents in parallel). Detachable sessions for long-running tasks. Required for /orch workflows. |
 | **Cursor** | VS Code fork with native AI pair programming | Best-in-class autocomplete (multi-line, contextual). Chat with codebase using @ symbols. Cmd+K for inline edits. Active agent branches show production use. $20/mo. |
-| **Warp Terminal** | Modern terminal with AI features and enhanced UX | AI command suggestions, command palette with search, block-based output. Primary terminal for daily work. Free tier available. |
+| **Warp Terminal** | Modern terminal with AI features and enhanced UX | Built-in LLM inference for command suggestions and explanations. Renamable tabs for organization (critical when running multiple AI agents). Block-based output and command palette. Makes multi-agent workflows manageable. Free tier available. |
 | **Antigravity & Codex** | Alternative AI IDEs for specialized tasks | Antigravity provides experimental features via web IDE. Codex excels at precision and verification. Active agent branches prove production use. |
 | **MCP Ecosystem** | Model Context Protocol servers (10 active) | 1,285 mcp-cli uses in last week. Enables multi-model coordination (Gemini + Grok + Perplexity), browser automation, and research acceleration. Game-changing for AI workflows. |
 | **/copilot** | Autonomous PR processing command | Handles 100+ comment PRs automatically. 4-phase workflow with priority-based triage (CRITICAL → BLOCKING → IMPORTANT → ROUTINE). 7,950 invocations prove reliability. |
@@ -82,10 +44,6 @@ With a $40-60/month baseline for tools (see [Cost Breakdown](#-cost-breakdown)),
 | **/execute** | General task execution command | 6,332 references in commits. Versatile command for running complex multi-step tasks. Heavy daily usage across all workflows. |
 | **/cerebras** | Fast code generation via Cerebras API | Rapid scaffolding and large code generation. Used for initial implementations before refinement with Claude/Cursor. |
 | **/orch** | Multi-agent orchestration command | 1,397 references. Coordinates 4 AI agents in parallel using tmux. For complex tasks requiring diverse AI capabilities. |
-| **Docker + Compose** | Containerization platform | Consistent dev/prod environments. Cloud Run deployment. 475 mentions in last week confirm active use. Essential for production deployments. |
-| **Playwright** | Modern browser automation framework | E2E testing for frontend. Auto-wait, multi-browser support. Superior to Selenium for modern web apps. |
-| **httpie** | Modern HTTP client (better than curl) | API testing with human-friendly output. Simpler syntax than curl. Daily use for backend development. |
-| **Google Cloud** | Cloud services (Cloud Run, Firebase, Firestore) | Serverless deployment with 192 deploy commits. Firebase backend (136 commits). Production infrastructure for WorldArchitect.AI. |
 
 **Key MCP Servers (part of MCP Ecosystem):**
 - **gemini-cli-mcp** (1,440 hits) - Primary LLM backend
@@ -186,25 +144,6 @@ bd create "Task description"
 
 ---
 
-#### 5. tmux
-**What it is:** Terminal multiplexer for session management
-
-**Why valuable:**
-- Multi-agent orchestration (4 agents in parallel)
-- Detachable sessions for long-running tasks
-- Essential for `/orch` workflows
-
-**How to install:**
-```bash
-brew install tmux
-tmux new -s mysession
-```
-
-
-**Detailed docs:** [WORKFLOWS.md](WORKFLOWS.md#-multi-agent-orchestration)
-
----
-
 ### AI Assistants
 
 #### 6. Cursor
@@ -233,10 +172,11 @@ tmux new -s mysession
 **What it is:** Modern terminal with AI features and better UX
 
 **Why valuable:**
-- AI command suggestions
-- Command palette with search
-- Block-based output
-- Primary terminal for daily work
+- **Built-in LLM inference** - Get command suggestions and explanations without leaving the terminal
+- **Renamable tabs** - Critical for organizing multiple AI agent sessions (e.g., "copilot-agent", "cursor-build", "claude-review")
+- **Block-based output** - Each command output is a distinct block, easier to scan when running long workflows
+- **Command palette** - Search history and saved commands
+- **Primary terminal for daily work** - Makes multi-agent orchestration manageable
 
 **How to install:**
 ```bash
@@ -399,86 +339,6 @@ export SMART_FAKE_TIMEOUT=180  # 3 minutes
 
 ---
 
-### Development Tools
-
-#### 15. Docker + Docker Compose
-**What it is:** Containerization platform
-
-**Why valuable:**
-- Consistent dev/prod environments
-- Cloud Run deployment
-- 475 mentions in last week (actual usage confirmed)
-
-**How to install:**
-```bash
-# Download from https://www.docker.com/get-docker
-docker --version
-docker compose version
-```
-
-
-**Detailed docs:** [SETUP_GUIDE.md](SETUP_GUIDE.md#docker--docker-compose)
-
----
-
-#### 16. Playwright
-**What it is:** Modern browser automation framework
-
-**Why valuable:**
-- E2E testing for frontend
-- Auto-wait, multi-browser support
-- Better than Selenium
-
-**How to install:**
-```bash
-npm install -g playwright
-npx playwright install
-npx playwright test
-```
-
-
-**Detailed docs:** [WORKFLOWS.md](WORKFLOWS.md#-browser-testing)
-
----
-
-#### 17. httpie
-**What it is:** Modern HTTP client (better than curl)
-
-**Why valuable:**
-- API testing
-- Human-friendly output
-- Simpler syntax
-
-**How to install:**
-```bash
-brew install httpie
-http GET api.example.com/users
-```
-
-
-**Detailed docs:** [SETUP_GUIDE.md](SETUP_GUIDE.md#httpie)
-
----
-
-#### 18. Google Cloud Platform
-**What it is:** Cloud services (Cloud Run, Firebase, Firestore)
-
-**Why valuable:**
-- Serverless deployment (Cloud Run - 192 deploy commits)
-- Firebase backend (136 commits)
-- Production infrastructure
-
-**How to install:**
-```bash
-brew install google-cloud-sdk
-gcloud auth login
-```
-
-
-**Detailed docs:** [SETUP_GUIDE.md](SETUP_GUIDE.md#google-cloud-sdk)
-
----
-
 ## 📊 Quick Stats
 
 | Metric | Value |
@@ -610,6 +470,40 @@ See [SETUP_GUIDE.md](SETUP_GUIDE.md) for complete installation of all tools.
 
 ---
 
+### 📊 Track Your AI Usage
+
+Using multiple AI tools means tracking costs across platforms. The **[AI Usage Tracker](https://github.com/jleechanorg/ai-usage-tracker)** provides unified token usage and cost reporting for Claude Code and Codex CLI.
+
+**Quick install:**
+```bash
+# pip
+pip install ai-usage-tracker
+ai-usage-tracker
+
+# npm
+npm install -g ai-usage-tracker
+ai-usage-tracker-js
+```
+
+**Key features:**
+- Combined Claude + Codex usage in one view
+- Daily cost breakdown and averages
+- Cache efficiency monitoring (90%+ read rates)
+- Table or JSON output for automation
+- Available as Claude skill: `/combined-usage`
+
+**Typical output:** Daily averages, cost per platform, total spend tracking
+```
+DAILY AVERAGES (Last 7 complete days)
+Claude:      237M tokens/day  |  $123.39/day
+Codex:       512M tokens/day  |  $98.76/day
+TOTAL:       749M tokens/day  |  $222.15/day
+```
+
+Track actual API usage to optimize spending and identify patterns alongside your subscription costs.
+
+---
+
 ## 🎓 Who This Is For
 
 **You should use this if:**
@@ -646,9 +540,8 @@ Not accepted:
 
 ## 🔗 Links
 
-- **Main Project:** [WorldArchitect.AI](https://github.com/jleechanorg/worldarchitect.ai)
 - **Author:** [@jleechan](https://github.com/jleechan)
-- **LinkedIn:** [12-Step Workflow Post](https://www.linkedin.com/posts/jeffrey-lee-chan_claude-web-start-and-codex-web-finish-as-activity-7400261997755478016-HLYP/)
+- **LinkedIn:** [12-Step Multi-AI Workflow](https://www.linkedin.com/posts/jeffrey-lee-chan_claude-web-start-and-codex-web-finish-as-activity-7400261997755478016-HLYP/)
 
 ---
 

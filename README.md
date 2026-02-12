@@ -43,6 +43,7 @@ With a $40-60/month baseline for tools (see [Cost Breakdown](#-cost-breakdown)),
 ## 📑 Table of Contents
 
 - [Executive Summary](#-executive-summary)
+  - [**Quick Reference: All Tools**](#quick-reference-all-recommended-tools) ⭐
   - [Core Tools](#core-tools-daily-use)
   - [AI Assistants](#ai-assistants)
   - [MCP Servers](#mcp-servers)
@@ -59,6 +60,42 @@ With a $40-60/month baseline for tools (see [Cost Breakdown](#-cost-breakdown)),
 ---
 
 ## 📋 Executive Summary
+
+### Quick Reference: All Recommended Tools
+
+| Tool | What It Is | Why We Recommend It |
+|------|-----------|---------------------|
+| **AI Usage Tracker** | Token usage and cost tracking for Claude Code and Codex CLI | Essential for monitoring AI spend across platforms. Combines usage data from multiple sources into unified reports with daily averages and cache efficiency metrics. Available as pip/npm package or Claude skill. |
+| **Claude Code CLI** | Anthropic's official command-line AI assistant with 200K context window | Terminal-first workflow enables scripting and automation. Extensible via 10 active MCP servers. Supports 80+ custom slash commands and multi-agent coordination. The foundation of the entire toolchain. |
+| **gh CLI** | Official GitHub command-line tool for PR/issue management | Core to PR automation workflows with 7,950 /copilot invocations. Enables PR creation, review, and merge from terminal. Fully integrated with automation commands. |
+| **Gemini** | Google's LLM accessed via MCP integration | Highest usage with 1,440 MCP hits + 1,114 commit mentions. Provides structured output with JSON mode, code execution capabilities, and reliable fallback chains for production workloads. |
+| **beads (bd)** | MCP-integrated task tracking system | AI agents can read/write tasks in real-time. Used more than traditional issue trackers (259 commits). Binary accessed daily. Superior to Jira/Linear for AI-first workflows. |
+| **tmux** | Terminal multiplexer for session management | Essential for multi-agent orchestration (4 agents in parallel). Detachable sessions for long-running tasks. Required for /orch workflows. |
+| **Cursor** | VS Code fork with native AI pair programming | Best-in-class autocomplete (multi-line, contextual). Chat with codebase using @ symbols. Cmd+K for inline edits. Active agent branches show production use. $20/mo. |
+| **Warp Terminal** | Modern terminal with AI features and enhanced UX | AI command suggestions, command palette with search, block-based output. Primary terminal for daily work. Free tier available. |
+| **Antigravity & Codex** | Alternative AI IDEs for specialized tasks | Antigravity provides experimental features via web IDE. Codex excels at precision and verification. Active agent branches prove production use. |
+| **MCP Ecosystem** | Model Context Protocol servers (10 active) | 1,285 mcp-cli uses in last week. Enables multi-model coordination (Gemini + Grok + Perplexity), browser automation, and research acceleration. Game-changing for AI workflows. |
+| **/copilot** | Autonomous PR processing command | Handles 100+ comment PRs automatically. 4-phase workflow with priority-based triage (CRITICAL → BLOCKING → IMPORTANT → ROUTINE). 7,950 invocations prove reliability. |
+| **/fixpr** | Intelligent PR fix automation | Analyzes failures, identifies root cause, makes minimal code changes. No gold-plating. Integrated verification. Saves hours on CI/CD issues. |
+| **/redgreen (TDD)** | Test-driven development workflow command | Enforces red-green pattern with evidence-based testing. 17.4% of commits are tests. Structured artifacts for reproducibility. |
+| **/fake** | Automatic code quality gate (hook) | Runs after EVERY Write operation. Catches 15% of code with issues (fake selectors, placeholder code). 343 automatic checks in 30 days. ~$5-10/mo prevents hours of debugging. |
+| **/execute** | General task execution command | 6,332 references in commits. Versatile command for running complex multi-step tasks. Heavy daily usage across all workflows. |
+| **/cerebras** | Fast code generation via Cerebras API | Rapid scaffolding and large code generation. Used for initial implementations before refinement with Claude/Cursor. |
+| **/orch** | Multi-agent orchestration command | 1,397 references. Coordinates 4 AI agents in parallel using tmux. For complex tasks requiring diverse AI capabilities. |
+| **Docker + Compose** | Containerization platform | Consistent dev/prod environments. Cloud Run deployment. 475 mentions in last week confirm active use. Essential for production deployments. |
+| **Playwright** | Modern browser automation framework | E2E testing for frontend. Auto-wait, multi-browser support. Superior to Selenium for modern web apps. |
+| **httpie** | Modern HTTP client (better than curl) | API testing with human-friendly output. Simpler syntax than curl. Daily use for backend development. |
+| **Google Cloud** | Cloud services (Cloud Run, Firebase, Firestore) | Serverless deployment with 192 deploy commits. Firebase backend (136 commits). Production infrastructure for WorldArchitect.AI. |
+
+**Key MCP Servers (part of MCP Ecosystem):**
+- **gemini-cli-mcp** (1,440 hits) - Primary LLM backend
+- **grok** (670 hits) - X.ai real-time intelligence
+- **perplexity-ask** (661 hits) - Research and web search
+- **sequential-thinking** (649 hits) - Enhanced reasoning chains
+- **chrome-superpower** (407 hits) - Browser automation
+- **context7** (341 hits) - Library documentation lookup
+
+---
 
 ### Core Tools (Daily Use)
 

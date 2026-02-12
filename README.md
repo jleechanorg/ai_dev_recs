@@ -6,6 +6,40 @@
 
 ---
 
+## 📊 Track Your AI Usage
+
+Using multiple AI tools means tracking costs across platforms. The **[AI Usage Tracker](https://github.com/jleechanorg/ai-usage-tracker)** provides unified token usage and cost reporting for Claude Code and Codex CLI.
+
+**Quick install:**
+```bash
+# pip
+pip install ai-usage-tracker
+ai-usage-tracker
+
+# npm
+npm install -g ai-usage-tracker
+ai-usage-tracker-js
+```
+
+**Key features:**
+- Combined Claude + Codex usage in one view
+- Daily cost breakdown and averages
+- Cache efficiency monitoring (90%+ read rates)
+- Table or JSON output for automation
+- Available as Claude skill: `/combined-usage`
+
+**Typical output:** Daily averages, cost per platform, total spend tracking
+```
+DAILY AVERAGES (Last 7 complete days)
+Claude:      237M tokens/day  |  $123.39/day
+Codex:       512M tokens/day  |  $98.76/day
+TOTAL:       749M tokens/day  |  $222.15/day
+```
+
+With a $40-60/month baseline for tools (see [Cost Breakdown](#-cost-breakdown)), tracking actual API usage helps optimize spending and identify patterns.
+
+---
+
 ## 📑 Table of Contents
 
 - [Executive Summary](#-executive-summary)

@@ -49,6 +49,7 @@
 | **[sequential-thinking](https://modelcontextprotocol.io/)** | Enhanced reasoning chains | Improves complex problem-solving by breaking down multi-step reasoning. |
 | **[chrome-superpower](https://modelcontextprotocol.io/)** | Browser automation via Chrome DevTools Protocol | Automate web interactions, testing, and scraping directly from AI workflows. |
 | **[context7](https://modelcontextprotocol.io/)** | Library documentation lookup | Instant access to up-to-date docs for any library without leaving terminal. |
+| **[mcp_mail](https://github.com/jleechanorg/mcp_mail)** | Agent-to-agent messaging system | Enables AI agents to communicate, coordinate, and share context. Essential for multi-agent workflows and task handoffs. |
 
 #### 3. Slash Commands
 

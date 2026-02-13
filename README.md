@@ -30,9 +30,8 @@
 
 | Tool | What It Is | Why We Recommend It |
 |------|-----------|---------------------|
-| **[AI Usage Tracker](https://github.com/jleechanorg/ai-usage-tracker)** | Token usage and cost tracking for Claude Code and Codex CLI | Essential for monitoring AI spend across platforms. Combines usage data from multiple sources into unified reports with daily averages and cache efficiency metrics. Available as pip/npm package or Claude skill. |
+| **[AI Usage Tracker](https://github.com/jleechanorg/ai-usage-tracker)** | Token usage and cost tracking for Claude Code and Codex CLI | Essential for monitoring AI spend across platforms. Combines usage data from multiple sources into unified reports with daily averages and cache efficiency metrics. Commands: `ai-usage-tracker` (pip) or `ai-usage-tracker-js` (npm). |
 | **[Claude Code CLI](https://github.com/anthropics/claude-code)** | Anthropic's official command-line AI assistant with 200K context window | Terminal-first workflow enables scripting and automation. Extensible via MCP servers. Supports 80+ custom slash commands and multi-agent coordination. The foundation of the entire toolchain. |
-| **[gh CLI](https://cli.github.com/)** | Official GitHub command-line tool for PR/issue management | Core to PR automation workflows. Enables PR creation, review, and merge from terminal. Fully integrated with automation commands. |
 | **[Cursor](https://cursor.sh/)** | VS Code fork with native AI pair programming | Best-in-class autocomplete (multi-line, contextual). Chat with codebase using @ symbols. Cmd+K for inline edits. $20/mo. |
 | **[Warp Terminal](https://www.warp.dev/)** | Modern terminal with AI features and enhanced UX | Built-in LLM inference for command suggestions and explanations. Renamable tabs for organization (critical when running multiple AI agents). Block-based output and command palette. Makes multi-agent workflows manageable. Free tier available. |
 | **[Codex CLI](https://codex.cli/)** | Alternative CLI AI assistant focused on precision | Excellent for precision work and verification. Provides detailed, accurate responses when you need high-quality output without iteration. |
@@ -56,8 +55,8 @@
 | Command | What It Is | Why We Recommend It |
 |---------|-----------|---------------------|
 | **[Obra Superpowers](https://superpowers.obra.dev/)** | Browser automation and control via Chrome extension | Direct browser control from Claude Code. Navigate, click, fill forms, screenshot - all from your AI workflow. Powerful for web testing and automation. |
-| **/copilot** | Autonomous PR processing command | Handles 100+ comment PRs automatically. 4-phase workflow with priority-based triage (CRITICAL → BLOCKING → IMPORTANT → ROUTINE). |
-| **/fixpr** | Intelligent PR fix automation | Analyzes failures, identifies root cause, makes minimal code changes. No gold-plating. Integrated verification. |
+| **/copilot** | Autonomous PR processing command | Handles 100+ comment PRs automatically. 4-phase workflow with priority-based triage (CRITICAL → BLOCKING → IMPORTANT → ROUTINE). Requires [gh CLI](https://cli.github.com/). |
+| **/fixpr** | Intelligent PR fix automation | Analyzes failures, identifies root cause, makes minimal code changes. No gold-plating. Integrated verification. Requires [gh CLI](https://cli.github.com/). |
 | **/redgreen** | Test-driven development workflow | Enforces red-green pattern with evidence-based testing. Structured artifacts for reproducibility. |
 | **/fake** | Automatic code quality gate (hook) | Runs after EVERY Write operation. Catches 15% of code with issues (fake selectors, placeholder code). |
 | **/execute** | General task execution command | Versatile command for running complex multi-step tasks. Heavy daily usage across all workflows. |
@@ -89,31 +88,7 @@ export ANTHROPIC_API_KEY="sk-ant-..."
 
 ---
 
-#### 2. gh CLI (GitHub CLI)
-**What it is:** Official GitHub command-line tool for PR/issue management
-
-**Why valuable:**
-- Core to `/copilot` PR automation (7,950 invocations)
-- PR creation, review, and merge from terminal
-- Integrated with automation workflows
-
-**How to install:**
-```bash
-# macOS
-brew install gh
-gh auth login
-
-# Linux
-curl -sL https://github.com/cli/cli/releases/download/v2.40.1/gh_2.40.1_linux_amd64.tar.gz | tar -xz -C /tmp
-mkdir -p ~/.local/bin && cp /tmp/gh_2.40.1_linux_amd64/bin/gh ~/.local/bin/
-```
-
-
-**Detailed docs:** [SETUP_GUIDE.md](SETUP_GUIDE.md#gh-cli-github)
-
----
-
-#### 3. Gemini (Google)
+#### 2. Gemini (Google)
 **What it is:** Primary LLM backend via MCP integration
 
 **Why valuable:**
@@ -133,7 +108,7 @@ mkdir -p ~/.local/bin && cp /tmp/gh_2.40.1_linux_amd64/bin/gh ~/.local/bin/
 
 ---
 
-#### 4. beads (bd)
+#### 3. beads (bd)
 **What it is:** MCP-integrated task tracking system
 
 **Why valuable:**
@@ -155,7 +130,7 @@ bd create "Task description"
 
 ### AI Assistants
 
-#### 6. Cursor
+#### 4. Cursor
 **What it is:** VS Code fork with native AI pair programming
 
 **Why valuable:**
@@ -177,7 +152,7 @@ bd create "Task description"
 
 ---
 
-#### 7. Warp Terminal
+#### 5. Warp Terminal
 **What it is:** Modern terminal with AI features and better UX
 
 **Why valuable:**
@@ -199,7 +174,7 @@ bd create "Task description"
 
 ---
 
-#### 8. Antigravity & Codex
+#### 6. Antigravity & Codex
 **What they are:** Alternative AI IDEs for specialized tasks
 
 **Why valuable:**
@@ -219,7 +194,7 @@ bd create "Task description"
 
 ### MCP Servers
 
-#### 9. MCP Ecosystem (10 Active Servers)
+#### 7. MCP Ecosystem (10 Active Servers)
 **What it is:** Model Context Protocol servers for multi-AI coordination
 
 **Why valuable:**
@@ -253,7 +228,7 @@ mcp-cli servers  # Verify active servers
 
 ### Automation Commands
 
-#### 10. /copilot
+#### 8. /copilot
 **What it is:** Autonomous PR processing command
 
 **Why valuable:**
@@ -271,7 +246,7 @@ mcp-cli servers  # Verify active servers
 
 ---
 
-#### 11. /fixpr
+#### 9. /fixpr
 **What it is:** Intelligent PR fix automation
 
 **Why valuable:**
@@ -290,7 +265,7 @@ mcp-cli servers  # Verify active servers
 
 ---
 
-#### 12. /redgreen (TDD)
+#### 10. /redgreen (TDD)
 **What it is:** Test-driven development workflow
 
 **Why valuable:**
@@ -308,7 +283,7 @@ mcp-cli servers  # Verify active servers
 
 ---
 
-#### 13. /fake (Automatic Hook)
+#### 11. /fake (Automatic Hook)
 **What it is:** Automatic code quality gate that runs after EVERY Write operation
 
 **Why valuable:**
@@ -334,7 +309,7 @@ export SMART_FAKE_TIMEOUT=180  # 3 minutes
 
 ---
 
-#### 14. Other Commands
+#### 12. Other Commands
 **Active commands with evidence:**
 - `/execute` (6,332 refs) - General task execution
 - `/cerebras` - Fast code generation

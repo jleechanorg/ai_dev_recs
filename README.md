@@ -8,6 +8,10 @@
 
 - [Executive Summary](#-executive-summary)
   - [**Quick Reference: All Tools**](#quick-reference-all-recommended-tools) ⭐
+    - [AI Coding Tools (CLIs & IDEs)](#1-ai-coding-tools-clis--ides)
+    - [Utilities & Tools](#2-utilities--tools)
+    - [MCP Servers](#3-mcp-servers)
+    - [Slash Commands](#4-slash-commands)
   - [Core Tools](#core-tools-daily-use)
   - [AI Assistants](#ai-assistants)
   - [MCP Servers](#mcp-servers)
@@ -26,18 +30,23 @@
 
 ### Quick Reference: All Recommended Tools
 
-#### 1. Programs & Tools
+#### 1. AI Coding Tools (CLIs & IDEs)
+
+| Tool | What It Is | Why We Recommend It |
+|------|-----------|---------------------|
+| **[Claude Code CLI](https://github.com/anthropics/claude-code)** | Anthropic's official command-line AI assistant with 200K context window | Terminal-first workflow enables scripting and automation. Extensible via MCP servers. Supports 80+ custom slash commands and multi-agent coordination. The foundation of the entire toolchain. |
+| **[Cursor](https://cursor.sh/)** | VS Code fork with native AI pair programming | Best-in-class autocomplete (multi-line, contextual). Chat with codebase using @ symbols. Cmd+K for inline edits. $20/mo. |
+| **[Codex CLI](https://codex.cli/)** | Alternative CLI AI assistant focused on precision | Excellent for precision work and verification. Provides detailed, accurate responses when you need high-quality output without iteration. |
+| **[Antigravity](https://antigravity.com/)** | Web-based AI IDE with generous token limits | Unconstrained usage of Opus 4.6 and other premium models. Great for heavy workloads. **Warning:** Agent manager is flaky and crashes frequently - save work often. |
+
+#### 2. Utilities & Tools
 
 | Tool | What It Is | Why We Recommend It |
 |------|-----------|---------------------|
 | **[AI Usage Tracker](https://github.com/jleechanorg/ai-usage-tracker)** | Token usage and cost tracking for Claude Code and Codex CLI | Essential for monitoring AI spend across platforms. Combines usage data from multiple sources into unified reports with daily averages and cache efficiency metrics. Commands: `ai-usage-tracker` (pip) or `ai-usage-tracker-js` (npm). |
-| **[Claude Code CLI](https://github.com/anthropics/claude-code)** | Anthropic's official command-line AI assistant with 200K context window | Terminal-first workflow enables scripting and automation. Extensible via MCP servers. Supports 80+ custom slash commands and multi-agent coordination. The foundation of the entire toolchain. |
-| **[Cursor](https://cursor.sh/)** | VS Code fork with native AI pair programming | Best-in-class autocomplete (multi-line, contextual). Chat with codebase using @ symbols. Cmd+K for inline edits. $20/mo. |
 | **[Warp Terminal](https://www.warp.dev/)** | Modern terminal with AI features and enhanced UX | Built-in LLM inference for command suggestions and explanations. Renamable tabs for organization (critical when running multiple AI agents). Block-based output and command palette. Makes multi-agent workflows manageable. Free tier available. |
-| **[Codex CLI](https://codex.cli/)** | Alternative CLI AI assistant focused on precision | Excellent for precision work and verification. Provides detailed, accurate responses when you need high-quality output without iteration. |
-| **[Antigravity](https://antigravity.com/)** | Web-based AI IDE with generous token limits | Unconstrained usage of Opus 4.6 and other premium models. Great for heavy workloads. **Warning:** Agent manager is flaky and crashes frequently - save work often. |
 
-#### 2. MCP Servers
+#### 3. MCP Servers
 
 | MCP Server | What It Is | Why We Recommend It |
 |-----------|-----------|---------------------|
@@ -50,7 +59,7 @@
 | **[context7](https://modelcontextprotocol.io/)** | Library documentation lookup | Instant access to up-to-date docs for any library without leaving terminal. |
 | **[mcp_mail](https://github.com/jleechanorg/mcp_mail)** | Agent-to-agent messaging system | Enables AI agents to communicate, coordinate, and share context. Essential for multi-agent workflows and task handoffs. |
 
-#### 3. Slash Commands
+#### 4. Slash Commands
 
 | Command | What It Is | Why We Recommend It |
 |---------|-----------|---------------------|

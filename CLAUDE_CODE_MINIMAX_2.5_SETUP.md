@@ -1,43 +1,34 @@
-# Claude Code + MiniMax 2.5 Integration
+# Claude Code + MiniMax 2.5
 
-Use MiniMax 2.5 directly within Claude Code CLI via the MiniMax MCP server.
+Configure Claude Code to use MiniMax 2.5 as the model instead of Claude.
 
-## Quick Setup
+## Setup
 
-The MiniMax MCP server is already connected in your stack:
+Edit `~/.claude/settings.json`:
 
-```bash
-# Verify connection
-mcp-cli servers | grep MiniMax
-
-# List available tools
-mcp-cli tools MiniMax
+```json
+{
+  "env": {
+    "ANTHROPIC_BASE_URL": "https://api.minimax.io/anthropic",
+    "ANTHROPIC_AUTH_TOKEN": "<MINIMAX_API_KEY>",
+    "API_TIMEOUT_MS": "3000000",
+    "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": "1",
+    "ANTHROPIC_MODEL": "MiniMax-M2.5",
+    "ANTHROPIC_DEFAULT_SONNET_MODEL": "MiniMax-M2.5"
+  }
+}
 ```
 
-## Available Tools
+**Get API key:** https://platform.minimax.io/user-center/basic-information/interface-key
 
-### Web Search
-```bash
-mcp-cli call MiniMax/web_search '{"query": "your search query"}'
-```
+**Users in China:** Use `https://api.minimaxi.com/anthropic` as base URL.
 
-### Image Understanding
-```bash
-mcp-cli call MiniMax/understand_image '{"image_url": "https://...", "prompt": "What do you see?"}'
-```
+## Why MiniMax 2.5?
 
-## Usage in Claude Code
+| Model | Context | Price |
+|-------|---------|-------|
+| Claude Enterprise | 500K | $200/mo |
+| **MiniMax 2.5** | **1M** | **$20/mo** |
 
-Within Claude Code sessions, you can call these MCP tools directly:
-- Use `MiniMax/web_search` for real-time web information
-- Use `MiniMax/understand_image` for analyzing images
-
-## Cost
-
-- MCP tools: Included with your MiniMax API key
-- API key: Get from https://platform.minimax.io
-
-## Links
-
-- MiniMax Platform: https://platform.minimax.io
-- Claude Code: https://docs.anthropic.com/claude/docs/claude-code
+- 2x context for 1/10th the price
+- Large document processing

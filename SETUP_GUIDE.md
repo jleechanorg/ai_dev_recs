@@ -53,7 +53,7 @@ claude --version
 
 #### MiniMax 2.5 ⭐ Alternative (Cost-Optimized)
 
-**Purpose:** Use MiniMax 2.5 as Claude Code model ($20/mo for 1M context)
+**Purpose:** Use MiniMax 2.5 as Claude Code model ($20/mo)
 
 ```bash
 # Edit ~/.claude/settings.json with your API key
@@ -99,7 +99,7 @@ claude --version
 
 ---
 
-### MCP Servers (11 Active)
+### MCP Servers (10 Active)
 
 **Check current servers:**
 ```bash
@@ -107,17 +107,16 @@ mcp-cli servers
 ```
 
 **Active servers:**
-1. **MiniMax** - Web search & image understanding
-2. **plugin_superpowers-chrome_chrome** - Obra Superpowers Chrome
-3. **sequential-thinking** - Enhanced reasoning
-4. **context7** - Library documentation
-5. **chrome-superpower** - Browser automation
-6. **gemini-cli-mcp** - Gemini API
-7. **grok** - X.ai integration
-8. **perplexity-ask** - Research/search
-9. **beads** - Task tracking
-10. **mcp_mail** - Agent messaging
-11. **openclaw** - Task orchestration
+1. **plugin_superpowers-chrome_chrome** - Obra Superpowers Chrome
+2. **sequential-thinking** - Enhanced reasoning
+3. **context7** - Library documentation
+4. **chrome-superpower** - Browser automation
+5. **gemini-cli-mcp** - Gemini API
+6. **grok** - X.ai integration
+7. **perplexity-ask** - Research/search
+8. **beads** - Task tracking
+9. **mcp_mail** - Agent messaging
+10. **openclaw** - Task orchestration
 
 **Related repos:**
 - mcp_mail: https://github.com/jleechanorg/mcp_mail

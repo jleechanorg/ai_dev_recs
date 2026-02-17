@@ -339,7 +339,7 @@ export SMART_FAKE_TIMEOUT=180  # 3 minutes
 | **Git commits analyzed** | 19,044 (last 6 months) |
 | **Custom slash commands** | 80+ total, 18 heavily used |
 | **MCP servers active** | 10 of 17 installed |
-| **AI assistants** | 5 (Claude Code, Cursor, Antigravity, Codex, Warp) |
+| **AI assistants** | 6 (Claude Code, MiniMax 2.5, Cursor, Antigravity, Codex, Warp) |
 | **Testing commits** | 3,308 (17.4% of all work) |
 | **PR automation** | 7,950 /copilot invocations |
 | **Multi-agent branches** | 4 agent prefixes (copilot/, cursor/, codex/, claude/) |
@@ -449,6 +449,7 @@ See [SETUP_GUIDE.md](SETUP_GUIDE.md) for complete installation of all tools.
 - **Claude Code Paid:** $20/mo (200K context)
 - **Cursor Pro:** $20/mo
 - **Optional:** Perplexity Pro $20/mo
+- **Alternative:** MiniMax 2.5 $20/mo - higher capacity than Claude (see [CLAUDE_CODE_MINIMAX_2.5_SETUP.md](CLAUDE_CODE_MINIMAX_2.5_SETUP.md))
 
 ### Free Tier ($0/mo)
 - VS Code + Copilot free tier

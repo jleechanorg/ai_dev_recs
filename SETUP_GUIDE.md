@@ -47,6 +47,20 @@ claude --version
 **Links:**
 - Official: https://docs.anthropic.com/claude/docs/claude-code
 - npm: https://www.npmjs.com/package/@anthropic-ai/claude-code
+- MiniMax 2.5: [CLAUDE_CODE_MINIMAX_2.5_SETUP.md](CLAUDE_CODE_MINIMAX_2.5_SETUP.md)
+
+---
+
+#### MiniMax 2.5 ⭐ Alternative (Cost-Optimized)
+
+**Purpose:** Use MiniMax 2.5 as Claude Code model ($20/mo)
+
+```bash
+# Edit ~/.claude/settings.json with your API key
+# See full setup: [CLAUDE_CODE_MINIMAX_2.5_SETUP.md](CLAUDE_CODE_MINIMAX_2.5_SETUP.md)
+```
+
+**Cost:** $20/mo - higher capacity than Claude Enterprise
 
 ---
 
@@ -102,7 +116,7 @@ mcp-cli servers
 7. **perplexity-ask** - Research/search
 8. **beads** - Task tracking
 9. **mcp_mail** - Agent messaging
-10. **claude-in-chrome** - Chrome extension
+10. **openclaw** - Task orchestration
 
 **Related repos:**
 - mcp_mail: https://github.com/jleechanorg/mcp_mail

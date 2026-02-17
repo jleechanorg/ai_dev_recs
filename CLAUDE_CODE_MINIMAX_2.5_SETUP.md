@@ -25,10 +25,10 @@ Edit `~/.claude/settings.json`:
 
 ## Why MiniMax 2.5?
 
-| Model | Context | Price |
-|-------|---------|-------|
-| Claude Enterprise | 500K | $200/mo |
-| **MiniMax 2.5** | **1M** | **$20/mo** |
+| Model | Price |
+|-------|-------|
+| Claude Enterprise | $200/mo |
+| **MiniMax 2.5** | **$20/mo** |
 
-- 2x context for 1/10th the price
+- Higher capacity than Claude Enterprise for 1/10th the price
 - Large document processing

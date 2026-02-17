@@ -60,7 +60,7 @@ claude --version
 # See full setup: [CLAUDE_CODE_MINIMAX_2.5_SETUP.md](CLAUDE_CODE_MINIMAX_2.5_SETUP.md)
 ```
 
-**Cost:** $20/mo for 1M context (vs $200/mo Claude Enterprise)
+**Cost:** $20/mo - higher capacity than Claude Enterprise
 
 ---
 

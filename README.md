@@ -525,7 +525,7 @@ See [SETUP_GUIDE.md](SETUP_GUIDE.md) for complete installation of all tools.
 - **Claude Code Paid:** $20/mo (200K context)
 - **Cursor Pro:** $20/mo
 - **Optional:** Perplexity Pro $20/mo
-- **Alternative:** MiniMax 2.5 ~$5-10/mo (via MCP, see [CLAUDE_CODE_MINIMAX_2.5_SETUP.md](CLAUDE_CODE_MINIMAX_2.5_SETUP.md))
+- **Alternative:** MiniMax 2.5 $20/mo for 1M context (vs $200/mo Claude Enterprise, see [CLAUDE_CODE_MINIMAX_2.5_SETUP.md](CLAUDE_CODE_MINIMAX_2.5_SETUP.md))
 
 ### Free Tier ($0/mo)
 - VS Code + Copilot free tier

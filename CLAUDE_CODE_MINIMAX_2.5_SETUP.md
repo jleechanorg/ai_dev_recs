@@ -62,11 +62,13 @@ mcp-cli call minimax/health_check '{}'
 
 ## Cost Comparison
 
-| Model | Input $/1M tokens | Output $/1M tokens |
-|-------|-------------------|-------------------|
-| Claude 3.5 Sonnet | $15 | $75 |
-| Claude 3.5 Sonnet (cached) | $1.50 | $1.50 |
-| MiniMax 2.5 | ~$1-2 | ~$2-4 |
+| Model | Context | Cost |
+|-------|----------|------|
+| Claude 3.5 Sonnet | 200K | $20/mo |
+| Claude Enterprise | 500K | $200/mo |
+| **MiniMax 2.5** | **1M** | **$20/mo** |
+
+MiniMax 2.5 at $20/mo provides **1M token context** - equivalent to a $200/mo Claude Enterprise plan.
 
 ## Use Cases
 

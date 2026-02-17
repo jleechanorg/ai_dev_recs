@@ -69,7 +69,7 @@ mcp-cli call minimax/chat_completion '{
 }'
 ```
 
-**Cost:** ~$1-2/M input tokens (vs $15/M for Claude)
+**Cost:** $20/mo for 1M context (vs $200/mo for Claude Enterprise)
 
 **Links:**
 - Platform: https://platform.minimax.chat/

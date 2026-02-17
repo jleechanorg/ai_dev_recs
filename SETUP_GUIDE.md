@@ -53,27 +53,22 @@ claude --version
 
 #### MiniMax 2.5 ⭐ Alternative (Cost-Optimized)
 
-**Purpose:** Cost-effective alternative with web search via MCP + chat via API
+**Purpose:** Web search & image understanding via MCP (already in stack)
 
 ```bash
-# MiniMax MCP is already connected (mcp-cli servers shows "MiniMax")
+# Verify it's connected
+mcp-cli servers | grep MiniMax
 
-# MCP tools available:
+# Use in Claude Code sessions
 mcp-cli call MiniMax/web_search '{"query": "latest AI news"}'
 mcp-cli call MiniMax/understand_image '{"image_url": "https://...", "prompt": "Describe"}'
-
-# For chat: use direct API (not available via MCP)
-# Get API key from https://platform.minimax.io
-export MINIMAX_API_KEY="sk-your-api-key"
 ```
 
-**Cost:** $20/mo for 1M context (vs $200/mo for Claude Enterprise)
+**API Key:** Get from https://platform.minimax.io
 
-**Links:**
-- Platform: https://platform.minimax.io
-- Article: [CLAUDE_CODE_MINIMAX_2.5_SETUP.md](CLAUDE_CODE_MINIMAX_2.5_SETUP.md)
+**Article:** [CLAUDE_CODE_MINIMAX_2.5_SETUP.md](CLAUDE_CODE_MINIMAX_2.5_SETUP.md)
 
-**Use cases:** Web search, image analysis, high-context tasks, cost optimization
+**Use cases:** Web search, image analysis within Claude Code
 
 ---
 

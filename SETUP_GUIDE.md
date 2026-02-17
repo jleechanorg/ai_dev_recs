@@ -47,35 +47,33 @@ claude --version
 **Links:**
 - Official: https://docs.anthropic.com/claude/docs/claude-code
 - npm: https://www.npmjs.com/package/@anthropic-ai/claude-code
-- Setup Guide: [CLAUDE_CODE_MINIMAX_2.5_SETUP.md](CLAUDE_CODE_MINIMAX_2.5_SETUP.md) (MiniMax 2.5 integration)
+- Optional MiniMax add-on: [CLAUDE_CODE_MINIMAX_2.5_SETUP.md](CLAUDE_CODE_MINIMAX_2.5_SETUP.md)
 
 ---
 
 #### MiniMax 2.5 ⭐ Alternative (Cost-Optimized)
 
-**Purpose:** Cost-effective alternative model via MCP integration
+**Purpose:** Cost-effective alternative with web search via MCP + chat via API
 
 ```bash
-# Install via mcp-cli (already in stack)
-# Get API key from https://platform.minimax.chat/
+# MiniMax MCP is already connected (mcp-cli servers shows "MiniMax")
 
-# Environment setup
+# MCP tools available:
+mcp-cli call MiniMax/web_search '{"query": "latest AI news"}'
+mcp-cli call MiniMax/understand_image '{"image_url": "https://...", "prompt": "Describe"}'
+
+# For chat: use direct API (not available via MCP)
+# Get API key from https://platform.minimax.io
 export MINIMAX_API_KEY="sk-your-api-key"
-
-# Usage through MCP
-mcp-cli call minimax/chat_completion '{
-  "model": "MiniMax-M2.5",
-  "messages": [{"role": "user", "content": "Your prompt"}]
-}'
 ```
 
 **Cost:** $20/mo for 1M context (vs $200/mo for Claude Enterprise)
 
 **Links:**
-- Platform: https://platform.minimax.chat/
+- Platform: https://platform.minimax.io
 - Article: [CLAUDE_CODE_MINIMAX_2.5_SETUP.md](CLAUDE_CODE_MINIMAX_2.5_SETUP.md)
 
-**Use cases:** High-volume tasks, cost-sensitive projects, alternative model perspective
+**Use cases:** Web search, image analysis, high-context tasks, cost optimization
 
 ---
 
@@ -114,7 +112,7 @@ mcp-cli call minimax/chat_completion '{
 
 ---
 
-### MCP Servers (10 Active)
+### MCP Servers (11 Active)
 
 **Check current servers:**
 ```bash
@@ -122,16 +120,17 @@ mcp-cli servers
 ```
 
 **Active servers:**
-1. **plugin_superpowers-chrome_chrome** - Obra Superpowers Chrome
-2. **sequential-thinking** - Enhanced reasoning
-3. **context7** - Library documentation
-4. **chrome-superpower** - Browser automation
-5. **gemini-cli-mcp** - Gemini API
-6. **grok** - X.ai integration
-7. **perplexity-ask** - Research/search
-8. **beads** - Task tracking
-9. **mcp_mail** - Agent messaging
-10. **claude-in-chrome** - Chrome extension
+1. **MiniMax** - Web search & image understanding
+2. **plugin_superpowers-chrome_chrome** - Obra Superpowers Chrome
+3. **sequential-thinking** - Enhanced reasoning
+4. **context7** - Library documentation
+5. **chrome-superpower** - Browser automation
+6. **gemini-cli-mcp** - Gemini API
+7. **grok** - X.ai integration
+8. **perplexity-ask** - Research/search
+9. **beads** - Task tracking
+10. **mcp_mail** - Agent messaging
+11. **openclaw** - Task orchestration
 
 **Related repos:**
 - mcp_mail: https://github.com/jleechanorg/mcp_mail

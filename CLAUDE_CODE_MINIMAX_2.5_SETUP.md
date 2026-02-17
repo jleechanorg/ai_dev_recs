@@ -1,112 +1,82 @@
 # Claude Code + MiniMax 2.5 Setup Guide
 
-This guide covers how to integrate MiniMax 2.5 as an alternative model in Claude Code CLI using the MCP (Model Context Protocol) infrastructure.
+This guide covers how to integrate MiniMax 2.5 as an alternative model in Claude Code. **Note:** MiniMax MCP currently only supports web search and image understanding - for chat completions, use the direct API.
 
 ## Why MiniMax 2.5?
 
-- **Cost-effective**: Significantly cheaper than Claude API ($1-2/M input tokens vs $15-18/M)
-- **Fast inference**: Optimized for high throughput
-- **MCP Integration**: Works seamlessly through the mcp-cli tool
-- **Alternative model**: Good for tasks where Claude's strengths aren't required
+- **Cost-effective**: $20/mo for 1M token context (vs $200/mo Claude Enterprise)
+- **Large context**: 1M token context window
+- **Web search**: Built-in MCP tool for real-time information
 
 ## Prerequisites
 
 1. Claude Code CLI installed: `npm install -g @anthropic-ai/claude-code`
-2. MiniMax API key (get from https://platform.minimax.chat/)
-3. mcp-cli installed (for MCP server management)
+2. MiniMax API key (see setup below)
+3. mcp-cli installed
 
-## Setup Steps
+## MiniMax MCP Tools (Available Now)
 
-### 1. Get MiniMax API Key
-
-1. Sign up at https://platform.minimax.chat/
-2. Navigate to API Keys section
-3. Create a new API key
-4. Note your API key (starts with `sk-...`)
-
-### 2. Configure mcp-cli for MiniMax
+The MiniMax MCP server provides these tools:
 
 ```bash
-# Check current MCP servers
-mcp-cli servers
+# List MiniMax tools
+mcp-cli tools MiniMax
 
-# The MiniMax integration works through mcp-cli tools
-# You'll use mcp-cli call minimax-* commands to interact with MiniMax
+# Web search
+mcp-cli call MiniMax/web_search '{"query": "latest AI news 2025"}'
+
+# Image understanding
+mcp-cli call MiniMax/understand_image '{"image_url": "https://example.com/image.png", "prompt": "Describe this image"}'
 ```
 
-### 3. Environment Variables
+## Using MiniMax for Chat (Direct API)
 
-Add to your shell profile (~/.zshrc or ~/.bashrc):
+For chat completions, use the MiniMax API directly:
+
+### 1. Get API Key
+
+Sign up at https://platform.minimax.io and generate an API key.
+
+### 2. Environment Setup
 
 ```bash
-export MINIMAX_API_KEY="sk-your-api-key-here"
+export MINIMAX_API_KEY="your-api-key-here"
 ```
 
-### 4. Usage with Claude Code
-
-The integration works through MCP tools. You can:
-
-- Use `mcp-cli call minimax-*` commands directly
-- Invoke MiniMax for specific tasks through Claude Code's tool system
-- Combine Claude Code's reasoning with MiniMax's cost-effectiveness
-
-### 5. Verification
+### 3. API Call Example
 
 ```bash
-# Test MiniMax connection
-mcp-cli call minimax/chat_completion '{"model": "MiniMax-M2.5", "messages": [{"role": "user", "content": "Hello"}]}'
-
-# Or check health
-mcp-cli call minimax/health_check '{}'
+# Use environment variable for security
+curl -X POST 'https://api.minimax.chat/v1/text/chatcompletion_pro' \
+  -H "Authorization: Bearer $MINIMAX_API_KEY" \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "model": "abab6.5s-chat",
+    "messages": [{"role": "user", "content": "Hello"}]
+  }'
 ```
+
+### 4. In Claude Code
+
+You can call MiniMax API from within Claude Code sessions using Bash tool or custom scripts.
 
 ## Cost Comparison
 
 | Model | Context | Cost |
-|-------|----------|------|
+|-------|---------|------|
 | Claude 3.5 Sonnet | 200K | $20/mo |
 | Claude Enterprise | 500K | $200/mo |
 | **MiniMax 2.5** | **1M** | **$20/mo** |
 
-MiniMax 2.5 at $20/mo provides **1M token context** - equivalent to a $200/mo Claude Enterprise plan.
-
 ## Use Cases
 
-- **High-volume tasks**: Batch processing, code generation for multiple files
-- **Cost-sensitive projects**: Learning, experimentation, prototyping
-- **Alternative perspective**: When you want a different model's approach
+- **Web search**: Use `MiniMax/web_search` MCP tool for real-time info
+- **Image analysis**: Use `MiniMax/understand_image` MCP tool
+- **High-context tasks**: Use direct API for large document processing
+- **Cost optimization**: 1M context at $20/mo vs 500K at $200/mo
 
-## Integration Points
+## Links
 
-### In Claude Code
-
-You can call MiniMax through MCP tools:
-
-```
-Use mcp-cli call minimax/* tools within Claude Code sessions
-```
-
-### In Scripts
-
-```bash
-# Direct API call example
-curl -X POST 'https://api.minimax.chat/v1/text/chatcompletion_pro' \
-  -H 'Authorization: Bearer sk-...' \
-  -H 'Content-Type: application/json' \
-  -d '{
-    "model": "MiniMax-M2.5",
-    "messages": [{"role": "user", "content": "Your prompt here"}]
-  }'
-```
-
-## Notes
-
-- MiniMax 2.5 is a good complement to Claude Code, not a replacement
-- Claude Code still provides the best CLI experience and tool orchestration
-- Use MiniMax for cost optimization on suitable tasks
-
-## Resources
-
-- MiniMax Platform: https://platform.minimax.chat/
-- MCP CLI Docs: https://github.com/anthropics/mcp-cli
-- Claude Code Docs: https://docs.anthropic.com/claude/docs/claude-code
+- MiniMax Platform: https://platform.minimax.io
+- MCP CLI: https://github.com/anthropics/mcp-cli
+- Claude Code: https://docs.anthropic.com/claude/docs/claude-code

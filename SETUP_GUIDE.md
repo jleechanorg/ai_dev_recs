@@ -47,6 +47,35 @@ claude --version
 **Links:**
 - Official: https://docs.anthropic.com/claude/docs/claude-code
 - npm: https://www.npmjs.com/package/@anthropic-ai/claude-code
+- Setup Guide: [CLAUDE_CODE_MINIMAX_2.5_SETUP.md](CLAUDE_CODE_MINIMAX_2.5_SETUP.md) (MiniMax 2.5 integration)
+
+---
+
+#### MiniMax 2.5 ⭐ Alternative (Cost-Optimized)
+
+**Purpose:** Cost-effective alternative model via MCP integration
+
+```bash
+# Install via mcp-cli (already in stack)
+# Get API key from https://platform.minimax.chat/
+
+# Environment setup
+export MINIMAX_API_KEY="sk-your-api-key"
+
+# Usage through MCP
+mcp-cli call minimax/chat_completion '{
+  "model": "MiniMax-M2.5",
+  "messages": [{"role": "user", "content": "Your prompt"}]
+}'
+```
+
+**Cost:** ~$1-2/M input tokens (vs $15/M for Claude)
+
+**Links:**
+- Platform: https://platform.minimax.chat/
+- Article: [CLAUDE_CODE_MINIMAX_2.5_SETUP.md](CLAUDE_CODE_MINIMAX_2.5_SETUP.md)
+
+**Use cases:** High-volume tasks, cost-sensitive projects, alternative model perspective
 
 ---
 

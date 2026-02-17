@@ -47,7 +47,7 @@ claude --version
 **Links:**
 - Official: https://docs.anthropic.com/claude/docs/claude-code
 - npm: https://www.npmjs.com/package/@anthropic-ai/claude-code
-- Optional MiniMax add-on: [CLAUDE_CODE_MINIMAX_2.5_SETUP.md](CLAUDE_CODE_MINIMAX_2.5_SETUP.md)
+- MiniMax 2.5: [CLAUDE_CODE_MINIMAX_2.5_SETUP.md](CLAUDE_CODE_MINIMAX_2.5_SETUP.md)
 
 ---
 

@@ -44,6 +44,7 @@
 | Tool | What It Is | Why We Recommend It |
 |------|-----------|---------------------|
 | **[AI Usage Tracker](https://github.com/jleechanorg/ai-usage-tracker)** | Token usage and cost tracking for Claude Code and Codex CLI | Essential for monitoring AI spend across platforms. Combines usage data from multiple sources into unified reports with daily averages and cache efficiency metrics. Commands: `ai-usage-tracker` (pip) or `ai-usage-tracker-js` (npm). |
+| **[jleechan-skills](https://github.com/jleechanorg/jleechan-skills)** | Portable `SKILL.md` library plus its slash-command pack, for Claude Code, Antigravity, Codex, and Cursor | The public export of the skill/command system behind sections 1 and 4. Skills hold the reasoning logic, schemas, and safety rails; slash commands are thin pointers — so one workflow runs unchanged across four agent CLIs, which is what makes the multi-agent branches in [WORKFLOWS.md](WORKFLOWS.md#-multi-agent-orchestration) portable. Install with the bundled `install-claude-commands.sh` (refuses a nonempty target unless `--backup` or `--merge` is passed); an opt-in curated `portable/` edition ships a hash manifest, and [INSTALL.md](https://github.com/jleechanorg/jleechan-skills/blob/main/INSTALL.md) covers isolated verification and rollback. |
 | **[Warp Terminal](https://www.warp.dev/)** | Modern terminal with AI features and enhanced UX | Built-in LLM inference for command suggestions and explanations. Renamable tabs for organization (critical when running multiple AI agents). Block-based output and command palette. Makes multi-agent workflows manageable. Free tier available. |
 
 #### 3. MCP Servers
@@ -69,6 +70,8 @@
 | **/redgreen** | Test-driven development workflow | Enforces red-green pattern with evidence-based testing. Structured artifacts for reproducibility. |
 | **/fake** | Automatic code quality gate (hook) | Runs after EVERY Write operation. Catches 15% of code with issues (fake selectors, placeholder code). |
 | **/execute** | General task execution command | Versatile command for running complex multi-step tasks. Heavy daily usage across all workflows. |
+
+**Where these come from:** the commands above (`/copilot`, `/fixpr`, `/redgreen`, `/fake`, `/execute`) and the skills behind them are exported publicly in **[jleechan-skills](https://github.com/jleechanorg/jleechan-skills)** — 243 `SKILL.md` packages with 243 slash-command pointers at `origin/main` (verified 2026-10-16, commit `ee626677`), split in its marketplace manifest into an Active Core set and an Extended Library. Obra Superpowers is third-party ([Superpowers](https://github.com/obra/superpowers) by Jesse Vincent) and is **not** authored or maintained by jleechanorg.
 
 ---
 
@@ -535,6 +538,9 @@ Not accepted:
 ## 🔗 Links
 
 - **Author:** [@jleechan](https://github.com/jleechan)
+- **Skills & commands library:** [jleechanorg/jleechan-skills](https://github.com/jleechanorg/jleechan-skills) — the portable `SKILL.md` + slash-command export referenced throughout this repo
+- **AI spend tracking:** [jleechanorg/ai-usage-tracker](https://github.com/jleechanorg/ai-usage-tracker)
+- **Team messaging:** [jleechanorg/mcp_mail](https://github.com/jleechanorg/mcp_mail)
 - **LinkedIn:** [12-Step Multi-AI Workflow](https://www.linkedin.com/posts/jeffrey-lee-chan_claude-web-start-and-codex-web-finish-as-activity-7400261997755478016-HLYP/)
 
 ---

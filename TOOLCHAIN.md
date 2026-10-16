@@ -32,6 +32,7 @@
 - **Custom config:** 290 lines, 150+ pre-approved permissions
 - **Commands:** 80+ custom slash commands
 - **Skills:** 40+ skill files
+- **Skills library (public):** [jleechan-skills](https://github.com/jleechanorg/jleechan-skills) — the portable export of this skill/command system: 243 `SKILL.md` packages + 243 slash-command pointers at `origin/main` (verified 2026-10-16, `ee626677`), installable into `CLAUDE_HOME` by `install-claude-commands.sh`
 - **Hooks:** 12+ custom hooks (PreToolUse, PostToolUse, UserPromptSubmit)
 - **Model:** Sonnet 4.5, 200K context window
 - **Cost:** $20/mo (Paid tier)

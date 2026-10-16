@@ -815,6 +815,8 @@ tail /tmp/claude-code-logs/smart_fake_code_detection_*.log
 - Procedural knowledge base
 - Referenced by commands
 
+**Public export:** [jleechan-skills](https://github.com/jleechanorg/jleechan-skills) publishes this skill/command system portably — skills as the source of truth in `.claude/skills/`, slash commands as thin pointers in `.claude/commands/` (243 packages + 243 command pointers at `origin/main` `ee626677`, verified 2026-10-16). The same packages run in Claude Code, Antigravity, Codex, and Cursor, which is why the multi-agent prefix branches below are portable across CLIs.
+
 ---
 
 ## 🔌 MCP Heavy Usage Pattern
